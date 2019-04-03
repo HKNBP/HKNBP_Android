@@ -1,0 +1,77 @@
+<!--
+  ~ HKNBP_Core is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ HKNBP_Core is distributed in the hope that it will be useful,
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with HKNBP_Core.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<html>
+<body>
+    <script src="https://cdn.bootcss.com/BrowserFS/2.0.0/browserfs.js"></script>
+    <script src="js/nodejs-library.js"></script>
+    <script>
+    BrowserFS.install(window);
+    // Configures BrowserFS to use the LocalStorage file system.
+    BrowserFS.configure({
+            fs: "LocalStorage"
+        }, function(e) {
+            if (e) {
+                // An error happened!
+                throw e;
+            }
+            // Otherwise, BrowserFS is ready-to-use!
+        }
+    );
+
+var XmltvParser = require('xmltv-parser');
+var file = 'channels.xml';
+var parser = new XmltvParser();
+
+parser.onChannel = function(chan) {
+  // channel local id
+  console.log(chan.id);
+
+  // channel names (usually only one)
+  console.log(chan.names);
+};
+
+parser.onProgramme = function(prog) {
+  // title & sub title
+  console.log(prog.title);
+  console.log(prog.subTitle);
+
+  // channel local id
+  console.log(prog.chan);
+
+  // broadcast start & end
+  console.log(prog.start, prog.end);
+
+  // description
+  console.log(prog.desc);
+
+  // array of category
+  console.log(prog.cat);
+
+  // array of credited person as an object {name, role} where role can be actor, director, presenter, ...
+  for(var c=0; c<prog.credits; c++) {
+    console.log(prog.credits[c].name,': ', prog.credits[c].role);
+  }
+}
+
+parser.parseFile(file);
+
+
+
+
+
+
+    </script>
+</body>
+</html>
