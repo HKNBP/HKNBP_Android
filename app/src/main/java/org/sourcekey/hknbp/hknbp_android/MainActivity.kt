@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
     val coreKotlinJSPath = "javascript:HKNBP_Core.org.sourcekey.hknbp.hknbp_core"
     lateinit var webView: WebView
 
-    @SuppressLint("ClickableViewAccessibility")
+    //@SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -85,6 +85,56 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * 佢可以響全個APP做OnKey
+     * 唔限某特定View
+     * 唔使個個View去setOnKeyListener
+     */
+    override fun dispatchKeyEvent(keyEvent: KeyEvent): Boolean {
+        if(keyEvent?.action == KeyEvent.ACTION_DOWN){
+            //實體搖控初始化
+            val remotePath = "${coreKotlinJSPath}.VirtualRemote"
+            when (keyEvent.keyCode) {
+                KeyEvent.KEYCODE_CHANNEL_UP             -> {webView.loadUrl("${remotePath}.nextChannelButton.click();")}
+                KeyEvent.KEYCODE_CHANNEL_DOWN           -> {webView.loadUrl("${remotePath}.previousChannelButton.click();")}
+                KeyEvent.KEYCODE_VOLUME_MUTE            -> {webView.loadUrl("${remotePath}.volumeMuteButton.click();")}
+                KeyEvent.KEYCODE_VOLUME_UP              -> {webView.loadUrl("${remotePath}.volumeUpButton.click();")}
+                KeyEvent.KEYCODE_VOLUME_DOWN            -> {webView.loadUrl("${remotePath}.volumeDownButton.click();")}
+                KeyEvent.KEYCODE_MEDIA_AUDIO_TRACK      -> {webView.loadUrl("${remotePath}.nextAudioButton.click();")}
+                KeyEvent.KEYCODE_CAPTIONS               -> {webView.loadUrl("${remotePath}.nextSubtitleButton.click();")}
+                //KeyEvent.KEYCODE_DPAD_CENTER            -> {webView.loadUrl("${remotePath}.centerButton.click();")}
+                //KeyEvent.KEYCODE_DPAD_UP                -> {webView.loadUrl("${remotePath}.upButton.click();")}
+                //KeyEvent.KEYCODE_DPAD_DOWN              -> {webView.loadUrl("${remotePath}.downButton.click();")}
+                //KeyEvent.KEYCODE_DPAD_LEFT              -> {webView.loadUrl("${remotePath}.leftButton.click();")}
+                //KeyEvent.KEYCODE_DPAD_RIGHT             -> {webView.loadUrl("${remotePath}.rightButton.click();")}
+                KeyEvent.KEYCODE_TV_TIMER_PROGRAMMING   -> {webView.loadUrl("${remotePath}.epgButton.click();")}
+                KeyEvent.KEYCODE_GUIDE                  -> {webView.loadUrl("${remotePath}.epgButton.click();")}
+                KeyEvent.KEYCODE_0                      -> {webView.loadUrl("${remotePath}.number0Button.click();")}
+                KeyEvent.KEYCODE_1                      -> {webView.loadUrl("${remotePath}.number1Button.click();")}
+                KeyEvent.KEYCODE_2                      -> {webView.loadUrl("${remotePath}.number2Button.click();")}
+                KeyEvent.KEYCODE_3                      -> {webView.loadUrl("${remotePath}.number3Button.click();")}
+                KeyEvent.KEYCODE_4                      -> {webView.loadUrl("${remotePath}.number4Button.click();")}
+                KeyEvent.KEYCODE_5                      -> {webView.loadUrl("${remotePath}.number5Button.click();")}
+                KeyEvent.KEYCODE_6                      -> {webView.loadUrl("${remotePath}.number6Button.click();")}
+                KeyEvent.KEYCODE_7                      -> {webView.loadUrl("${remotePath}.number7Button.click();")}
+                KeyEvent.KEYCODE_8                      -> {webView.loadUrl("${remotePath}.number8Button.click();")}
+                KeyEvent.KEYCODE_9                      -> {webView.loadUrl("${remotePath}.number9Button.click();")}
+                KeyEvent.KEYCODE_TV_MEDIA_CONTEXT_MENU  -> {webView.loadUrl("${remotePath}.menuButton.click();")}
+                KeyEvent.KEYCODE_TV_CONTENTS_MENU       -> {webView.loadUrl("${remotePath}.menuButton.click();")}
+                KeyEvent.KEYCODE_INFO                   -> {webView.loadUrl("${remotePath}.tvChannelDescriptionButton.click();")}
+                KeyEvent.KEYCODE_TV_AUDIO_DESCRIPTION   -> {webView.loadUrl("${remotePath}.audioDescriptionButton.click();")}
+                KeyEvent.KEYCODE_PROG_RED               -> {webView.loadUrl("${remotePath}.programmableRedButton.click();")}
+                KeyEvent.KEYCODE_PROG_GREEN             -> {webView.loadUrl("${remotePath}.programmableGreenButton.click();")}
+                KeyEvent.KEYCODE_PROG_YELLOW            -> {webView.loadUrl("${remotePath}.programmableYellowButton.click();")}
+                KeyEvent.KEYCODE_PROG_BLUE              -> {webView.loadUrl("${remotePath}.programmableBlueButton.click();")}
+                KeyEvent.KEYCODE_LAST_CHANNEL           -> {webView.loadUrl("${remotePath}.lastTimeChannelButton.click();")}
+                KeyEvent.KEYCODE_WINDOW                 -> {/**畫中畫功能*/}
+                else                                    -> {}
+            }
+        }
+        return super.dispatchKeyEvent(keyEvent)
+    }
+
     @JavascriptInterface
     fun hideSystemUI() {
         Log.v("屌", "h")
@@ -128,56 +178,6 @@ class MainActivity : AppCompatActivity() {
     fun volumeMute(){
         val audio = getSystemService(Context.AUDIO_SERVICE) as AudioManager
         audio.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_TOGGLE_MUTE, AudioManager.FLAG_SHOW_UI)
-    }
-
-    /**
-     * 佢可以響全個APP做OnKey
-     * 唔限某特定View
-     * 唔使個個View去setOnKeyListener
-     */
-    override fun dispatchKeyEvent(keyEvent: KeyEvent): Boolean {
-        if(keyEvent?.action == KeyEvent.ACTION_DOWN){
-            //實體搖控初始化
-            val remotePath = "${coreKotlinJSPath}.VirtualRemote"
-            when (keyEvent.keyCode) {
-                KeyEvent.KEYCODE_CHANNEL_UP             -> {webView.loadUrl("${remotePath}.nextChannelButton.click();")}
-                KeyEvent.KEYCODE_CHANNEL_DOWN           -> {webView.loadUrl("${remotePath}.previousChannelButton.click();")}
-                KeyEvent.KEYCODE_VOLUME_MUTE            -> {webView.loadUrl("${remotePath}.volumeMuteButton.click();")}
-                KeyEvent.KEYCODE_VOLUME_UP              -> {webView.loadUrl("${remotePath}.volumeUpButton.click();")}
-                KeyEvent.KEYCODE_VOLUME_DOWN            -> {webView.loadUrl("${remotePath}.volumeDownButton.click();")}
-                KeyEvent.KEYCODE_MEDIA_AUDIO_TRACK      -> {webView.loadUrl("${remotePath}.nextAudioButton.click();")}
-                KeyEvent.KEYCODE_CAPTIONS               -> {webView.loadUrl("${remotePath}.nextSubtitleButton.click();")}
-                //KeyEvent.KEYCODE_DPAD_CENTER            -> {webView.loadUrl("${remotePath}.centerButton.click();")}
-                //KeyEvent.KEYCODE_DPAD_UP                -> {webView.loadUrl("${remotePath}.upButton.click();")}
-                //KeyEvent.KEYCODE_DPAD_DOWN              -> {webView.loadUrl("${remotePath}.downButton.click();")}
-                //KeyEvent.KEYCODE_DPAD_LEFT              -> {webView.loadUrl("${remotePath}.leftButton.click();")}
-                //KeyEvent.KEYCODE_DPAD_RIGHT             -> {webView.loadUrl("${remotePath}.rightButton.click();")}
-                KeyEvent.KEYCODE_TV_TIMER_PROGRAMMING   -> {webView.loadUrl("${remotePath}.epgButton.click();")}
-                KeyEvent.KEYCODE_GUIDE                  -> {webView.loadUrl("${remotePath}.epgButton.click();")}
-                KeyEvent.KEYCODE_0                      -> {webView.loadUrl("${remotePath}.number0Button.click();")}
-                KeyEvent.KEYCODE_1                      -> {webView.loadUrl("${remotePath}.number1Button.click();")}
-                KeyEvent.KEYCODE_2                      -> {webView.loadUrl("${remotePath}.number2Button.click();")}
-                KeyEvent.KEYCODE_3                      -> {webView.loadUrl("${remotePath}.number3Button.click();")}
-                KeyEvent.KEYCODE_4                      -> {webView.loadUrl("${remotePath}.number4Button.click();")}
-                KeyEvent.KEYCODE_5                      -> {webView.loadUrl("${remotePath}.number5Button.click();")}
-                KeyEvent.KEYCODE_6                      -> {webView.loadUrl("${remotePath}.number6Button.click();")}
-                KeyEvent.KEYCODE_7                      -> {webView.loadUrl("${remotePath}.number7Button.click();")}
-                KeyEvent.KEYCODE_8                      -> {webView.loadUrl("${remotePath}.number8Button.click();")}
-                KeyEvent.KEYCODE_9                      -> {webView.loadUrl("${remotePath}.number9Button.click();")}
-                //KeyEvent.KEYCODE_TV_MEDIA_CONTEXT_MENU  -> {/**未知*/}
-                //KeyEvent.KEYCODE_TV_CONTENTS_MENU       -> {/**未知*/}
-                KeyEvent.KEYCODE_INFO                   -> {webView.loadUrl("${remotePath}.tvChannelDescriptionButton.click();")}
-                KeyEvent.KEYCODE_TV_AUDIO_DESCRIPTION   -> {webView.loadUrl("${remotePath}.audioDescriptionButton.click();")}
-                KeyEvent.KEYCODE_PROG_RED               -> {webView.loadUrl("${remotePath}.programmableRedButton.click();")}
-                KeyEvent.KEYCODE_PROG_GREEN             -> {webView.loadUrl("${remotePath}.programmableGreenButton.click();")}
-                KeyEvent.KEYCODE_PROG_YELLOW            -> {webView.loadUrl("${remotePath}.programmableYellowButton.click();")}
-                KeyEvent.KEYCODE_PROG_BLUE              -> {webView.loadUrl("${remotePath}.programmableBlueButton.click();")}
-                KeyEvent.KEYCODE_LAST_CHANNEL           -> {webView.loadUrl("${remotePath}.lastTimeChannelButton.click();")}
-                KeyEvent.KEYCODE_WINDOW                 -> {/**畫中畫功能*/}
-                else                                    -> {}
-            }
-        }
-        return super.dispatchKeyEvent(keyEvent)
     }
 }
 
