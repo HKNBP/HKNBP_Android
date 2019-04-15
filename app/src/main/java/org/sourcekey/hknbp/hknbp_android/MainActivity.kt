@@ -1,3 +1,17 @@
+/*
+ * HKNBP_Android is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * HKNBP_Android is distributed in the hope that it will be useful,
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with HKNBP_Android.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
 package org.sourcekey.hknbp.hknbp_android
 
 import android.annotation.SuppressLint
@@ -21,6 +35,7 @@ import java.util.*
 class MainActivity : AppCompatActivity() {
     val coreRoot = "http://hknbp.org/"//"file:///android_asset/HKNBP_Core/index.html"
     val coreKotlinJSPath = "javascript:HKNBP_Core.org.sourcekey.hknbp.hknbp_core"
+    val appVersion: String = "0.9-Android"
     lateinit var webView: WebView
 
     //@SuppressLint("ClickableViewAccessibility")
@@ -30,17 +45,16 @@ class MainActivity : AppCompatActivity() {
         hideSystemUI()
         /**
         val button = findViewById<Button>(R.id.button)
-        button.setOnClickListener(object : OnClickListener{
-        var isShow = false
-        override fun onClick(v: View?) {
-        if(isShow){
-        hideSystemUI()
-        }else{
-        showSystemUI()
-        }
-        }
-        })
-         */
+            button.setOnClickListener(object : OnClickListener{
+            var isShow = false
+            override fun onClick(v: View?) {
+                if(isShow){
+                    hideSystemUI()
+                }else{
+                    showSystemUI()
+                }
+            }
+        })*/
 
         webView = findViewById(R.id.webView)
         webView.settings.javaScriptEnabled = true//設定同JavaScript互Call權限
@@ -66,16 +80,14 @@ class MainActivity : AppCompatActivity() {
                 webView.loadUrl("${coreKotlinJSPath}.player.volumeUp=function(){HKNBP_Android.volumeUp();};")
                 webView.loadUrl("${coreKotlinJSPath}.player.volumeDown=function(){HKNBP_Android.volumeDown();};")
                 webView.loadUrl("${coreKotlinJSPath}.player.volumeMute=function(){HKNBP_Android.volumeMute();};")
-            }
-            /**
-            override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
-                if (url.startsWith("file://")) {
-                    // magic
-                    return true
-                }
-                return false
+                //話畀Core知個App係咩版本
+                webView.loadUrl("${coreKotlinJSPath}.appVersion=${appVersion};")
             }
 
+            /**
+             * 當WebView Load唔到URL時
+             * 呢舊野會被call
+             *
             override fun onReceivedError(webView: WebView?, request: WebResourceRequest?, error: WebResourceError?) {
                 super.onReceivedError(webView, request, error)
                 if(webView?.url == coreRoot){
