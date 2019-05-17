@@ -2,5 +2,8 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/app/src/main/assets/HKNBP_Core" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/app/src/main/assets/HKNBP_CoreManager" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/app/src/main/assets/HKNBP_CoreManager/HKNBP_Core" vcs="Git" />
   </component>
 </project>

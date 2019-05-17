@@ -20,82 +20,89 @@ import android.media.AudioManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.KeyEvent
-import android.view.View
 import android.webkit.*
-import android.view.MotionEvent
 import android.app.Activity
+import android.graphics.Color
 import android.view.View.*
 import android.view.View.OnSystemUiVisibilityChangeListener
 import android.os.Build
+import android.view.*
 import android.widget.Button
 import java.util.*
+import android.os.AsyncTask
+import androidx.core.content.ContextCompat
 
 
 class MainActivity : AppCompatActivity() {
-    val coreRoot = "http://hknbp.org/"//"file:///android_asset/HKNBP_Core/index.html"
+    val coreURL = "https://hknbp.org/"//"file:///android_asset/HKNBP_Core/index.html"
     val coreKotlinJSPath = "javascript:HKNBP_Core.org.sourcekey.hknbp.hknbp_core"
     val appVersion: String = "0.9-Android"
     lateinit var webView: WebView
 
-    //@SuppressLint("ClickableViewAccessibility")
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        hideSystemUI()
-        /**
-        val button = findViewById<Button>(R.id.button)
-            button.setOnClickListener(object : OnClickListener{
-            var isShow = false
-            override fun onClick(v: View?) {
-                if(isShow){
-                    hideSystemUI()
-                }else{
-                    showSystemUI()
-                }
-            }
-        })*/
 
-        webView = findViewById(R.id.webView)
-        webView.settings.javaScriptEnabled = true//設定同JavaScript互Call權限
-        webView.settings.domStorageEnabled = true
-        webView.settings.javaScriptCanOpenWindowsAutomatically = true//設定允許畀JavaScript彈另一個window
-        webView.settings.allowFileAccessFromFileURLs = true
-        webView.addJavascriptInterface(this, "HKNBP_Android")
-        webView.loadUrl(coreRoot)//"file:///android_asset/index.html"
-        webView.settings.setPluginState(WebSettings.PluginState.ON)
-        webView.settings.setPluginState(WebSettings.PluginState.ON_DEMAND)
-        webView.settings.setUserAgentString("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.137 Safari/537.36")//使用DesktopMode,YoutubeAPI需要DesktopMode先自動播放
-        if(android.os.Build.VERSION.SDK_INT>16){webView.settings.setMediaPlaybackRequiresUserGesture(false)}//Vdieo自動播放
-        webView.webViewClient = object : WebViewClient() {
-            override fun onPageFinished(webView: WebView, url: String) {
-                super.onPageFinished(webView, url)
-
-                //Set個Function落HKNBP_Core嘅JavaScript度畀佢之後可以Call返來執行某啲動作
-                webView.loadUrl("${coreKotlinJSPath}.UserControlPanel.onShowUserControlPanel=function(){HKNBP_Android.showSystemUI();};")
-                webView.loadUrl("${coreKotlinJSPath}.UserControlPanel.onHideUserControlPanel=function(){HKNBP_Android.hideSystemUI();};")
-                //手提唔需要全螢幕制
-                webView.loadUrl("${coreKotlinJSPath}.FullScreenButton.hide();")
-                //虛擬搖控鍵設換
-                webView.loadUrl("${coreKotlinJSPath}.player.volumeUp=function(){HKNBP_Android.volumeUp();};")
-                webView.loadUrl("${coreKotlinJSPath}.player.volumeDown=function(){HKNBP_Android.volumeDown();};")
-                webView.loadUrl("${coreKotlinJSPath}.player.volumeMute=function(){HKNBP_Android.volumeMute();};")
-                //話畀Core知個App係咩版本
-                webView.loadUrl("${coreKotlinJSPath}.appVersion=${appVersion};")
-            }
-
-            /**
-             * 當WebView Load唔到URL時
-             * 呢舊野會被call
-             *
-            override fun onReceivedError(webView: WebView?, request: WebResourceRequest?, error: WebResourceError?) {
-                super.onReceivedError(webView, request, error)
-                if(webView?.url == coreRoot){
-                    webView?.loadUrl(coreRoot)
-                }
-            }*/
-        }
+    fun showSystemUI() {
+        // Shows the system bars by removing all the flags
+        // except for the ones that make the content appear under the system bars.
+        window.decorView.systemUiVisibility = (
+                View.SYSTEM_UI_FLAG_LAYOUT_STABLE// or
+                //View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or
+                //View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+        )
     }
+
+    fun hideSystemUI() {
+        // Enables regular immersive mode.
+        // For "lean back" mode, remove SYSTEM_UI_FLAG_IMMERSIVE.
+        // Or for "sticky immersive," replace it with SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+        window.decorView.systemUiVisibility = (
+                View.SYSTEM_UI_FLAG_IMMERSIVE or
+                // Set the content to appear under the system bars so that the
+                // content doesn't resize when the system bars hide and show.
+                //View.SYSTEM_UI_FLAG_LAYOUT_STABLE or
+                //View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or
+                //View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or
+                // Hide the nav bar and status bar
+                View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or
+                View.SYSTEM_UI_FLAG_FULLSCREEN
+        )
+    }
+
+    private var needShow = false
+    private fun setSystemUIController(){
+        android.os.Handler().postDelayed({
+            if(needShow){showSystemUI()}else{hideSystemUI()}
+            setSystemUIController()
+        }, 1000)
+    }
+
+    @JavascriptInterface
+    fun requestShowSystemUI(){
+        needShow = true
+    }
+
+    @JavascriptInterface
+    fun requestHideSystemUI(){
+        needShow = false
+    }
+
+    @JavascriptInterface
+    fun volumeUp() {
+        val audio = getSystemService(Context.AUDIO_SERVICE) as AudioManager
+        audio.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_RAISE, AudioManager.FLAG_SHOW_UI)
+    }
+
+    @JavascriptInterface
+    fun volumeDown(){
+        val audio = getSystemService(Context.AUDIO_SERVICE) as AudioManager
+        audio.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_LOWER, AudioManager.FLAG_SHOW_UI)
+    }
+
+    @JavascriptInterface
+    fun volumeMute(){
+        val audio = getSystemService(Context.AUDIO_SERVICE) as AudioManager
+        audio.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_TOGGLE_MUTE, AudioManager.FLAG_SHOW_UI)
+    }
+
 
     /**
      * 佢可以響全個APP做OnKey
@@ -147,49 +154,56 @@ class MainActivity : AppCompatActivity() {
         return super.dispatchKeyEvent(keyEvent)
     }
 
-    @JavascriptInterface
-    fun hideSystemUI() {
-        Log.v("屌", "h")
-        // Enables regular immersive mode.
-        // For "lean back" mode, remove SYSTEM_UI_FLAG_IMMERSIVE.
-        // Or for "sticky immersive," replace it with SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-        window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_IMMERSIVE
-                // Set the content to appear under the system bars so that the
-                // content doesn't resize when the system bars hide and show.
-                or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                // Hide the nav bar and status bar
-                or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                or View.SYSTEM_UI_FLAG_FULLSCREEN)
-    }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        hideSystemUI()
+        setSystemUIController()
 
-    // Shows the system bars by removing all the flags
-    // except for the ones that make the content appear under the system bars.
-    @JavascriptInterface
-    fun showSystemUI() {
-        Log.v("屌", "s")
-        window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN)
-    }
+        if (Build.VERSION.SDK_INT >= 21) {
+            getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.background)) // Navigation bar the soft bottom of some phones like nexus and some Samsung note series
+            getWindow().setStatusBarColor(ContextCompat.getColor(this,R.color.background)) //status bar or the time bar at the top
+        }
 
-    @JavascriptInterface
-    fun volumeUp() {
-        val audio = getSystemService(Context.AUDIO_SERVICE) as AudioManager
-        audio.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_RAISE, AudioManager.FLAG_SHOW_UI)
-    }
+        webView = findViewById(R.id.webView)
+        webView.settings.javaScriptEnabled = true//設定同JavaScript互Call權限
+        webView.settings.domStorageEnabled = true
+        webView.settings.javaScriptCanOpenWindowsAutomatically = true//設定允許畀JavaScript彈另一個window
+        webView.settings.allowFileAccessFromFileURLs = true
+        webView.addJavascriptInterface(this, "HKNBP_Android")
+        webView.loadUrl(coreURL)//"file:///android_asset/index.html"
+        webView.settings.setPluginState(WebSettings.PluginState.ON)
+        webView.settings.setPluginState(WebSettings.PluginState.ON_DEMAND)
+        webView.settings.setUserAgentString("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.137 Safari/537.36")//使用DesktopMode,YoutubeAPI需要DesktopMode先自動播放
+        if(android.os.Build.VERSION.SDK_INT>16){webView.settings.setMediaPlaybackRequiresUserGesture(false)}//Vdieo自動播放
+        webView.webViewClient = object : WebViewClient() {
+            override fun onPageFinished(webView: WebView, url: String) {
+                super.onPageFinished(webView, url)
 
-    @JavascriptInterface
-    fun volumeDown(){
-        val audio = getSystemService(Context.AUDIO_SERVICE) as AudioManager
-        audio.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_LOWER, AudioManager.FLAG_SHOW_UI)
-    }
+                //Set個Function落HKNBP_Core嘅JavaScript度畀佢之後可以Call返來執行某啲動作
+                webView.loadUrl("${coreKotlinJSPath}.UserControlPanel.onShowUserControlPanel=function(){HKNBP_Android.requestShowSystemUI();};")
+                webView.loadUrl("${coreKotlinJSPath}.UserControlPanel.onHideUserControlPanel=function(){HKNBP_Android.requestHideSystemUI();};")
+                //隱藏全螢幕制
+                //webView.loadUrl("${coreKotlinJSPath}.FullScreenButton.hide();")
+                //虛擬搖控鍵設換
+                webView.loadUrl("${coreKotlinJSPath}.player.volumeUp=function(){HKNBP_Android.volumeUp();};")
+                webView.loadUrl("${coreKotlinJSPath}.player.volumeDown=function(){HKNBP_Android.volumeDown();};")
+                webView.loadUrl("${coreKotlinJSPath}.player.volumeMute=function(){HKNBP_Android.volumeMute();};")
+                //話畀Core知個App係咩版本
+                webView.loadUrl("${coreKotlinJSPath}.appVersion=${appVersion};")
+            }
 
-    @JavascriptInterface
-    fun volumeMute(){
-        val audio = getSystemService(Context.AUDIO_SERVICE) as AudioManager
-        audio.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_TOGGLE_MUTE, AudioManager.FLAG_SHOW_UI)
+            /**
+             * 當WebView Load唔到URL時
+             * 呢舊野會被call
+             *
+            override fun onReceivedError(webView: WebView?, request: WebResourceRequest?, error: WebResourceError?) {
+            super.onReceivedError(webView, request, error)
+            if(webView?.url == coreURL){
+            webView?.loadUrl(coreURL)
+            }
+            }*/
+        }
     }
 }
 
