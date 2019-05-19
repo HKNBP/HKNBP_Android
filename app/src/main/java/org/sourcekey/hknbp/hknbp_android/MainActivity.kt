@@ -188,7 +188,7 @@ class MainActivity : AppCompatActivity() {
                 //虛擬搖控鍵設換
                 webView.loadUrl("${coreKotlinJSPath}.player.volumeUp=function(){HKNBP_Android.volumeUp();};")
                 webView.loadUrl("${coreKotlinJSPath}.player.volumeDown=function(){HKNBP_Android.volumeDown();};")
-                webView.loadUrl("${coreKotlinJSPath}.player.volumeMute=function(){HKNBP_Android.volumeMute();};")
+                //webView.loadUrl("${coreKotlinJSPath}.player.volumeMute=function(){HKNBP_Android.volumeMute();};")
                 //話畀Core知個App係咩版本
                 webView.loadUrl("${coreKotlinJSPath}.appVersion=${appVersion};")
             }
