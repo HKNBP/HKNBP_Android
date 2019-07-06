@@ -13,5 +13,6 @@
   -->
 
 <resources>
-    <string name="app_name">HKNBP_Android</string>
+    <string name="app_name">HKNBP</string>
+    <string name="pleaseMakeSureTheDeviceIsConnectedToTheInternet">Please make sure the device is connected to the internet</string>
 </resources>

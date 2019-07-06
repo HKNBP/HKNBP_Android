@@ -30,6 +30,7 @@ import android.view.*
 import android.widget.Button
 import java.util.*
 import android.os.AsyncTask
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 
 
@@ -37,6 +38,7 @@ class MainActivity : AppCompatActivity() {
     val coreURL = "https://hknbp.org/"//"file:///android_asset/HKNBP_Core/index.html"
     val coreKotlinJSPath = "javascript:HKNBP_Core.org.sourcekey.hknbp.hknbp_core"
     val appVersion: String = "0.9-Android"
+    val mainActivity: MainActivity = this
     lateinit var webView: WebView
 
 
@@ -170,6 +172,7 @@ class MainActivity : AppCompatActivity() {
         webView.settings.domStorageEnabled = true
         webView.settings.javaScriptCanOpenWindowsAutomatically = true//設定允許畀JavaScript彈另一個window
         webView.settings.allowFileAccessFromFileURLs = true
+        webView.settings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK)//開啟離線網頁功能,為之後上唔到個網都可以用到
         webView.addJavascriptInterface(this, "HKNBP_Android")
         webView.loadUrl(coreURL)//"file:///android_asset/index.html"
         webView.settings.setPluginState(WebSettings.PluginState.ON)
@@ -179,7 +182,6 @@ class MainActivity : AppCompatActivity() {
         webView.webViewClient = object : WebViewClient() {
             override fun onPageFinished(webView: WebView, url: String) {
                 super.onPageFinished(webView, url)
-
                 //Set個Function落HKNBP_Core嘅JavaScript度畀佢之後可以Call返來執行某啲動作
                 webView.loadUrl("${coreKotlinJSPath}.UserControlPanel.onShowUserControlPanel=function(){HKNBP_Android.requestShowSystemUI();};")
                 webView.loadUrl("${coreKotlinJSPath}.UserControlPanel.onHideUserControlPanel=function(){HKNBP_Android.requestHideSystemUI();};")
@@ -196,13 +198,12 @@ class MainActivity : AppCompatActivity() {
             /**
              * 當WebView Load唔到URL時
              * 呢舊野會被call
-             *
+             **/
             override fun onReceivedError(webView: WebView?, request: WebResourceRequest?, error: WebResourceError?) {
-            super.onReceivedError(webView, request, error)
-            if(webView?.url == coreURL){
-            webView?.loadUrl(coreURL)
+                super.onReceivedError(webView, request, error)
+                //if(webView?.url == coreURL){ webView?.loadUrl(coreURL) }
+                Toast.makeText(mainActivity, R.string.pleaseMakeSureTheDeviceIsConnectedToTheInternet, Toast.LENGTH_LONG).show()
             }
-            }*/
         }
     }
 }
