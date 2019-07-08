@@ -32,6 +32,10 @@ import java.util.*
 import android.os.AsyncTask
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import android.webkit.WebSettings
+import android.webkit.WebSettings.RenderPriority
+
+
 
 
 class MainActivity : AppCompatActivity() {
@@ -168,11 +172,11 @@ class MainActivity : AppCompatActivity() {
         }
 
         webView = findViewById(R.id.webView)
-        webView.settings.javaScriptEnabled = true//設定同JavaScript互Call權限
         webView.settings.domStorageEnabled = true
         webView.settings.javaScriptCanOpenWindowsAutomatically = true//設定允許畀JavaScript彈另一個window
         webView.settings.allowFileAccessFromFileURLs = true
         webView.settings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK)//開啟離線網頁功能,為之後上唔到個網都可以用到
+        webView.settings.javaScriptEnabled = true//設定同JavaScript互Call權限
         webView.addJavascriptInterface(this, "HKNBP_Android")
         webView.loadUrl(coreURL)//"file:///android_asset/index.html"
         webView.settings.setPluginState(WebSettings.PluginState.ON)
@@ -206,5 +210,25 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
+    /**
+    private fun initWebView() {
+        mWebView.getSettings().setJavaScriptEnabled(true)
+        mWebView.getSettings().setRenderPriority(RenderPriority.HIGH)
+        mWebView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT) //Set the cache mode
+        // Open the DOM storage API function
+        mWebView.getSettings().setDomStorageEnabled(true)
+        //Open the database storage API function
+        mWebView.getSettings().setDatabaseEnabled(true)
+        val cacheDirPath = filesDir.absolutePath + APP_CACAHE_DIRNAME
+        // String cacheDirPath = getCacheDir().getAbsolutePath()+Constant.APP_DB_DIRNAME;
+        Log.i(FragmentActivity.TAG, "cacheDirPath=$cacheDirPath")
+        //Set the database cache path
+        mWebView.getSettings().setDatabasePath(cacheDirPath)
+        //Set the Application Caches cache directory
+        mWebView.getSettings().setAppCachePath(cacheDirPath)
+        //Open the Application Caches function
+        mWebView.getSettings().setAppCacheEnabled(true)
+    }*/
 }
 
