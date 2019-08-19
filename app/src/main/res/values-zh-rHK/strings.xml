@@ -14,6 +14,6 @@
   -->
 
 <resources>
-    <string name="app_name">香港網路廣播平台</string>
+    <string name="app_name">香港網路廣播平臺</string>
     <string name="pleaseMakeSureTheDeviceIsConnectedToTheInternet">請確保設備已連接到互聯網</string>
 </resources>

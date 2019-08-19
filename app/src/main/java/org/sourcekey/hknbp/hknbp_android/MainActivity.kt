@@ -123,8 +123,8 @@ class MainActivity : AppCompatActivity() {
                 KeyEvent.KEYCODE_CHANNEL_UP             -> {webView.loadUrl("${remotePath}.nextChannelButton.click();")}
                 KeyEvent.KEYCODE_CHANNEL_DOWN           -> {webView.loadUrl("${remotePath}.previousChannelButton.click();")}
                 KeyEvent.KEYCODE_VOLUME_MUTE            -> {webView.loadUrl("${remotePath}.volumeMuteButton.click();")}
-                KeyEvent.KEYCODE_VOLUME_UP              -> {webView.loadUrl("${remotePath}.volumeUpButton.click();")}
-                KeyEvent.KEYCODE_VOLUME_DOWN            -> {webView.loadUrl("${remotePath}.volumeDownButton.click();")}
+                //KeyEvent.KEYCODE_VOLUME_UP              -> {webView.loadUrl("${remotePath}.volumeUpButton.click();")}
+                //KeyEvent.KEYCODE_VOLUME_DOWN            -> {webView.loadUrl("${remotePath}.volumeDownButton.click();")}
                 KeyEvent.KEYCODE_MEDIA_AUDIO_TRACK      -> {webView.loadUrl("${remotePath}.nextAudioButton.click();")}
                 KeyEvent.KEYCODE_CAPTIONS               -> {webView.loadUrl("${remotePath}.nextSubtitleButton.click();")}
                 //KeyEvent.KEYCODE_DPAD_CENTER            -> {webView.loadUrl("${remotePath}.centerButton.click();")}
@@ -182,7 +182,7 @@ class MainActivity : AppCompatActivity() {
         webView.settings.setPluginState(WebSettings.PluginState.ON)
         webView.settings.setPluginState(WebSettings.PluginState.ON_DEMAND)
         webView.settings.setUserAgentString("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.137 Safari/537.36")//使用DesktopMode,YoutubeAPI需要DesktopMode先自動播放
-        if(android.os.Build.VERSION.SDK_INT>16){webView.settings.setMediaPlaybackRequiresUserGesture(false)}//Vdieo自動播放
+        if(Build.VERSION.SDK_INT>16){webView.settings.setMediaPlaybackRequiresUserGesture(false)}//Video自動播放
         webView.webViewClient = object : WebViewClient() {
             override fun onPageFinished(webView: WebView, url: String) {
                 super.onPageFinished(webView, url)
@@ -192,8 +192,8 @@ class MainActivity : AppCompatActivity() {
                 //隱藏全螢幕制
                 //webView.loadUrl("${coreKotlinJSPath}.FullScreenButton.hide();")
                 //虛擬搖控鍵設換
-                webView.loadUrl("${coreKotlinJSPath}.player.volumeUp=function(){HKNBP_Android.volumeUp();};")
-                webView.loadUrl("${coreKotlinJSPath}.player.volumeDown=function(){HKNBP_Android.volumeDown();};")
+                //webView.loadUrl("${coreKotlinJSPath}.player.volumeUp=function(){HKNBP_Android.volumeUp();};")
+                //webView.loadUrl("${coreKotlinJSPath}.player.volumeDown=function(){HKNBP_Android.volumeDown();};")
                 //webView.loadUrl("${coreKotlinJSPath}.player.volumeMute=function(){HKNBP_Android.volumeMute();};")
                 //話畀Core知個App係咩版本
                 webView.loadUrl("${coreKotlinJSPath}.appVersion=${appVersion};")
