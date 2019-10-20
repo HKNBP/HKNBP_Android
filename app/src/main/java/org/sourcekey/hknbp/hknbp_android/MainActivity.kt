@@ -41,7 +41,7 @@ import android.webkit.WebSettings.RenderPriority
 class MainActivity : AppCompatActivity() {
     val coreURL = "https://hknbp.org/"//"file:///android_asset/HKNBP_Core/index.html"
     val coreKotlinJSPath = "javascript:HKNBP_Core.org.sourcekey.hknbp.hknbp_core"
-    val appVersion: String = "0.9-Android"
+    val appVersion: String = "v1.1-Android"
     val mainActivity: MainActivity = this
     lateinit var webView: WebView
 
@@ -92,7 +92,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     @JavascriptInterface
-    fun volumeUp() {
+    fun volumeUp(){
         val audio = getSystemService(Context.AUDIO_SERVICE) as AudioManager
         audio.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_RAISE, AudioManager.FLAG_SHOW_UI)
     }
@@ -110,6 +110,8 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+    val remotePath = "${coreKotlinJSPath}.VirtualRemote"
+
     /**
      * 佢可以響全個APP做OnKey
      * 唔限某特定View
@@ -118,13 +120,12 @@ class MainActivity : AppCompatActivity() {
     override fun dispatchKeyEvent(keyEvent: KeyEvent): Boolean {
         if(keyEvent?.action == KeyEvent.ACTION_DOWN){
             //實體搖控初始化
-            val remotePath = "${coreKotlinJSPath}.VirtualRemote"
             when (keyEvent.keyCode) {
                 KeyEvent.KEYCODE_CHANNEL_UP             -> {webView.loadUrl("${remotePath}.nextChannelButton.click();")}
                 KeyEvent.KEYCODE_CHANNEL_DOWN           -> {webView.loadUrl("${remotePath}.previousChannelButton.click();")}
                 KeyEvent.KEYCODE_VOLUME_MUTE            -> {webView.loadUrl("${remotePath}.volumeMuteButton.click();")}
-                //KeyEvent.KEYCODE_VOLUME_UP              -> {webView.loadUrl("${remotePath}.volumeUpButton.click();")}
-                //KeyEvent.KEYCODE_VOLUME_DOWN            -> {webView.loadUrl("${remotePath}.volumeDownButton.click();")}
+                KeyEvent.KEYCODE_VOLUME_UP              -> {webView.loadUrl("${remotePath}.volumeUpButton.click();")}
+                KeyEvent.KEYCODE_VOLUME_DOWN            -> {webView.loadUrl("${remotePath}.volumeDownButton.click();")}
                 KeyEvent.KEYCODE_MEDIA_AUDIO_TRACK      -> {webView.loadUrl("${remotePath}.nextAudioButton.click();")}
                 KeyEvent.KEYCODE_CAPTIONS               -> {webView.loadUrl("${remotePath}.nextSubtitleButton.click();")}
                 //KeyEvent.KEYCODE_DPAD_CENTER            -> {webView.loadUrl("${remotePath}.centerButton.click();")}
@@ -154,7 +155,7 @@ class MainActivity : AppCompatActivity() {
                 KeyEvent.KEYCODE_PROG_BLUE              -> {webView.loadUrl("${remotePath}.programmableBlueButton.click();")}
                 KeyEvent.KEYCODE_LAST_CHANNEL           -> {webView.loadUrl("${remotePath}.lastTimeChannelButton.click();")}
                 KeyEvent.KEYCODE_WINDOW                 -> {/**畫中畫功能*/}
-                else                                    -> {}
+                else                                    -> {webView.loadUrl("${coreKotlinJSPath}.PromptBox.promptMessage(\"本程式並無此功能提供${keyEvent.keyCode}\");")}
             }
         }
         return super.dispatchKeyEvent(keyEvent)
@@ -192,9 +193,9 @@ class MainActivity : AppCompatActivity() {
                 //隱藏全螢幕制
                 //webView.loadUrl("${coreKotlinJSPath}.FullScreenButton.hide();")
                 //虛擬搖控鍵設換
-                //webView.loadUrl("${coreKotlinJSPath}.player.volumeUp=function(){HKNBP_Android.volumeUp();};")
-                //webView.loadUrl("${coreKotlinJSPath}.player.volumeDown=function(){HKNBP_Android.volumeDown();};")
-                //webView.loadUrl("${coreKotlinJSPath}.player.volumeMute=function(){HKNBP_Android.volumeMute();};")
+                webView.loadUrl("${remotePath}.volumeUpButton.onclick=function(){HKNBP_Android.volumeUp();};")
+                webView.loadUrl("${remotePath}.volumeDownButton.onclick=function(){HKNBP_Android.volumeDown();};")
+                webView.loadUrl("${remotePath}.volumeMuteButton.onclick=function(){HKNBP_Android.volumeMute();};")
                 //話畀Core知個App係咩版本
                 webView.loadUrl("${coreKotlinJSPath}.appVersion=${appVersion};")
             }
