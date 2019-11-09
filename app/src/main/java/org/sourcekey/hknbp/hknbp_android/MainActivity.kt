@@ -22,6 +22,7 @@ import android.os.Bundle
 import android.util.Log
 import android.webkit.*
 import android.app.Activity
+import android.app.ProgressDialog
 import android.graphics.Color
 import android.view.View.*
 import android.view.View.OnSystemUiVisibilityChangeListener
@@ -34,81 +35,26 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import android.webkit.WebSettings
 import android.webkit.WebSettings.RenderPriority
-
+import androidx.core.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import androidx.core.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import android.webkit.WebView
+import android.webkit.WebChromeClient
+import androidx.core.app.ComponentActivity
+import androidx.core.app.ComponentActivity.ExtraData
+import androidx.core.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 
 
 
 class MainActivity : AppCompatActivity() {
     val coreURL = "https://hknbp.org/"//"file:///android_asset/HKNBP_Core/index.html"
-    val coreKotlinJSPath = "javascript:HKNBP_Core.org.sourcekey.hknbp.hknbp_core"
-    val appVersion: String = "v1.1-Android"
+    val corePath = "HKNBP_Core.org.sourcekey.hknbp.hknbp_core"
+    val coreKotlinJSPath = "javascript:${corePath}"
+    val appVersion: String = "v5-Android"
     val mainActivity: MainActivity = this
     lateinit var webView: WebView
-
-
-    fun showSystemUI() {
-        // Shows the system bars by removing all the flags
-        // except for the ones that make the content appear under the system bars.
-        window.decorView.systemUiVisibility = (
-                View.SYSTEM_UI_FLAG_LAYOUT_STABLE// or
-                //View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or
-                //View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-        )
-    }
-
-    fun hideSystemUI() {
-        // Enables regular immersive mode.
-        // For "lean back" mode, remove SYSTEM_UI_FLAG_IMMERSIVE.
-        // Or for "sticky immersive," replace it with SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-        window.decorView.systemUiVisibility = (
-                View.SYSTEM_UI_FLAG_IMMERSIVE or
-                // Set the content to appear under the system bars so that the
-                // content doesn't resize when the system bars hide and show.
-                //View.SYSTEM_UI_FLAG_LAYOUT_STABLE or
-                //View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or
-                //View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or
-                // Hide the nav bar and status bar
-                View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or
-                View.SYSTEM_UI_FLAG_FULLSCREEN
-        )
-    }
-
-    private var needShow = false
-    private fun setSystemUIController(){
-        android.os.Handler().postDelayed({
-            if(needShow){showSystemUI()}else{hideSystemUI()}
-            setSystemUIController()
-        }, 1000)
-    }
-
-    @JavascriptInterface
-    fun requestShowSystemUI(){
-        needShow = true
-    }
-
-    @JavascriptInterface
-    fun requestHideSystemUI(){
-        needShow = false
-    }
-
-    @JavascriptInterface
-    fun volumeUp(){
-        val audio = getSystemService(Context.AUDIO_SERVICE) as AudioManager
-        audio.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_RAISE, AudioManager.FLAG_SHOW_UI)
-    }
-
-    @JavascriptInterface
-    fun volumeDown(){
-        val audio = getSystemService(Context.AUDIO_SERVICE) as AudioManager
-        audio.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_LOWER, AudioManager.FLAG_SHOW_UI)
-    }
-
-    @JavascriptInterface
-    fun volumeMute(){
-        val audio = getSystemService(Context.AUDIO_SERVICE) as AudioManager
-        audio.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_TOGGLE_MUTE, AudioManager.FLAG_SHOW_UI)
-    }
-
 
     val remotePath = "${coreKotlinJSPath}.VirtualRemote"
 
@@ -128,11 +74,11 @@ class MainActivity : AppCompatActivity() {
                 KeyEvent.KEYCODE_VOLUME_DOWN            -> {webView.loadUrl("${remotePath}.volumeDownButton.click();")}
                 KeyEvent.KEYCODE_MEDIA_AUDIO_TRACK      -> {webView.loadUrl("${remotePath}.nextAudioButton.click();")}
                 KeyEvent.KEYCODE_CAPTIONS               -> {webView.loadUrl("${remotePath}.nextSubtitleButton.click();")}
-                //KeyEvent.KEYCODE_DPAD_CENTER            -> {webView.loadUrl("${remotePath}.centerButton.click();")}
-                //KeyEvent.KEYCODE_DPAD_UP                -> {webView.loadUrl("${remotePath}.upButton.click();")}
-                //KeyEvent.KEYCODE_DPAD_DOWN              -> {webView.loadUrl("${remotePath}.downButton.click();")}
-                //KeyEvent.KEYCODE_DPAD_LEFT              -> {webView.loadUrl("${remotePath}.leftButton.click();")}
-                //KeyEvent.KEYCODE_DPAD_RIGHT             -> {webView.loadUrl("${remotePath}.rightButton.click();")}
+                KeyEvent.KEYCODE_DPAD_CENTER            -> {/*webView.loadUrl("${remotePath}.centerButton.click();")*/}
+                KeyEvent.KEYCODE_DPAD_UP                -> {/*webView.loadUrl("${remotePath}.upButton.click();")*/}
+                KeyEvent.KEYCODE_DPAD_DOWN              -> {/*webView.loadUrl("${remotePath}.downButton.click();")*/}
+                KeyEvent.KEYCODE_DPAD_LEFT              -> {/*webView.loadUrl("${remotePath}.leftButton.click();")*/}
+                KeyEvent.KEYCODE_DPAD_RIGHT             -> {/*webView.loadUrl("${remotePath}.rightButton.click();")*/}
                 KeyEvent.KEYCODE_TV_TIMER_PROGRAMMING   -> {webView.loadUrl("${remotePath}.epgButton.click();")}
                 KeyEvent.KEYCODE_GUIDE                  -> {webView.loadUrl("${remotePath}.epgButton.click();")}
                 KeyEvent.KEYCODE_0                      -> {webView.loadUrl("${remotePath}.number0Button.click();")}
@@ -161,11 +107,80 @@ class MainActivity : AppCompatActivity() {
         return super.dispatchKeyEvent(keyEvent)
     }
 
+
+    fun showSystemUI() {
+        // Shows the system bars by removing all the flags
+        // except for the ones that make the content appear under the system bars.
+        window.decorView.systemUiVisibility = (
+                View.SYSTEM_UI_FLAG_LAYOUT_STABLE// or
+                //View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or
+                //View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                )
+    }
+
+    fun hideSystemUI() {
+        // Enables regular immersive mode.
+        // For "lean back" mode, remove SYSTEM_UI_FLAG_IMMERSIVE.
+        // Or for "sticky immersive," replace it with SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+        window.decorView.systemUiVisibility = (
+                View.SYSTEM_UI_FLAG_IMMERSIVE or
+                        // Set the content to appear under the system bars so that the
+                        // content doesn't resize when the system bars hide and show.
+                        //View.SYSTEM_UI_FLAG_LAYOUT_STABLE or
+                        //View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or
+                        //View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or
+                        // Hide the nav bar and status bar
+                        View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or
+                        View.SYSTEM_UI_FLAG_FULLSCREEN
+                )
+    }
+
+    private var isNeedShow = false
+    private fun setSystemUIController(){
+        android.os.Handler().postDelayed({
+            setSystemUIController()
+            if(isNeedShow){showSystemUI()}else{hideSystemUI()}
+        }, 1000)
+    }
+
+    @JavascriptInterface fun requestSystemUI(isShow: String){
+        isNeedShow = isShow.toBoolean()
+    }
+
+    @JavascriptInterface fun volumeUp(){
+        val audio = getSystemService(Context.AUDIO_SERVICE) as AudioManager
+        audio.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_RAISE, AudioManager.FLAG_SHOW_UI)
+    }
+
+    @JavascriptInterface fun volumeDown(){
+        val audio = getSystemService(Context.AUDIO_SERVICE) as AudioManager
+        audio.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_LOWER, AudioManager.FLAG_SHOW_UI)
+    }
+
+    @JavascriptInterface fun volumeMute(){
+        val audio = getSystemService(Context.AUDIO_SERVICE) as AudioManager
+        audio.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_TOGGLE_MUTE, AudioManager.FLAG_SHOW_UI)
+    }
+
+    private var isCoreLoaded = false
+    private fun setCheckCoreLoaded(){
+        android.os.Handler().postDelayed({
+            setCheckCoreLoaded()
+            if(!isCoreLoaded){webView.reload()}
+        }, 10000)
+    }
+
+    @JavascriptInterface fun returnCoreStatus(isLoaded: String){
+        isCoreLoaded = isLoaded.toBoolean()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         hideSystemUI()
+
         setSystemUIController()
+        setCheckCoreLoaded()
 
         if (Build.VERSION.SDK_INT >= 21) {
             getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.background)) // Navigation bar the soft bottom of some phones like nexus and some Samsung note series
@@ -184,30 +199,66 @@ class MainActivity : AppCompatActivity() {
         webView.settings.setPluginState(WebSettings.PluginState.ON_DEMAND)
         webView.settings.setUserAgentString("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.137 Safari/537.36")//使用DesktopMode,YoutubeAPI需要DesktopMode先自動播放
         if(Build.VERSION.SDK_INT>16){webView.settings.setMediaPlaybackRequiresUserGesture(false)}//Video自動播放
+        webView.setWebChromeClient(object : WebChromeClient() {
+            var progressDialog: ProgressDialog? = null
+            override fun onProgressChanged(webView: WebView, progress: Int) {
+                //顯示載入進度
+                if(webView.url == coreURL){
+                    if(progressDialog == null){
+                        //新增ProgressDialog
+                        progressDialog = ProgressDialog(mainActivity)
+                        progressDialog?.setMessage(getResources().getString(R.string.loaded))
+                        progressDialog?.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL)
+                        progressDialog?.setMax(100)
+                        progressDialog?.show()
+                        progressDialog?.setCancelable(false)
+                    }
+                    progressDialog?.incrementProgressBy(progress)
+                    if(100 <= progress){
+                        //移除ProgressDialog
+                        progressDialog?.dismiss()
+                        progressDialog = null
+                    }
+                }
+            }
+        })
         webView.webViewClient = object : WebViewClient() {
+            private fun checkCoreIsLoaded(){
+                webView?.loadUrl("""javascript:
+                    try{
+                        if(${corePath}){
+                            HKNBP_Android.returnCoreStatus(true);
+                        }else{
+                            HKNBP_Android.returnCoreStatus(false);
+                        }
+                    }catch(e){
+                        HKNBP_Android.returnCoreStatus(false);
+                    }
+                """)
+            }
+
             override fun onPageFinished(webView: WebView, url: String) {
                 super.onPageFinished(webView, url)
                 //Set個Function落HKNBP_Core嘅JavaScript度畀佢之後可以Call返來執行某啲動作
-                webView.loadUrl("${coreKotlinJSPath}.UserControlPanel.onShowUserControlPanel=function(){HKNBP_Android.requestShowSystemUI();};")
-                webView.loadUrl("${coreKotlinJSPath}.UserControlPanel.onHideUserControlPanel=function(){HKNBP_Android.requestHideSystemUI();};")
-                //隱藏全螢幕制
-                //webView.loadUrl("${coreKotlinJSPath}.FullScreenButton.hide();")
+                webView.loadUrl("${coreKotlinJSPath}.UserControlPanel.onShowUserControlPanel=function(){HKNBP_Android.requestSystemUI(true);};")
+                webView.loadUrl("${coreKotlinJSPath}.UserControlPanel.onHideUserControlPanel=function(){HKNBP_Android.requestSystemUI(false);};")
                 //虛擬搖控鍵設換
-                webView.loadUrl("${remotePath}.volumeUpButton.onclick=function(){HKNBP_Android.volumeUp();};")
-                webView.loadUrl("${remotePath}.volumeDownButton.onclick=function(){HKNBP_Android.volumeDown();};")
-                webView.loadUrl("${remotePath}.volumeMuteButton.onclick=function(){HKNBP_Android.volumeMute();};")
+                webView.loadUrl("${coreKotlinJSPath}.Player.Companion.volumeUp=function(){HKNBP_Android.volumeUp();};")
+                webView.loadUrl("${coreKotlinJSPath}.Player.Companion.volumeDown=function(){HKNBP_Android.volumeDown();};")
+                webView.loadUrl("${coreKotlinJSPath}.Player.Companion.volumeMute=function(){HKNBP_Android.volumeMute();};")
                 //話畀Core知個App係咩版本
-                webView.loadUrl("${coreKotlinJSPath}.appVersion=${appVersion};")
+                webView.loadUrl("javascript:window.setTimeout(function(){${corePath}.appVersion=\"${appVersion}\";},0)")
+                //確保Core Load好
+                checkCoreIsLoaded()
             }
 
-            /**
-             * 當WebView Load唔到URL時
-             * 呢舊野會被call
-             **/
             override fun onReceivedError(webView: WebView?, request: WebResourceRequest?, error: WebResourceError?) {
                 super.onReceivedError(webView, request, error)
-                //if(webView?.url == coreURL){ webView?.loadUrl(coreURL) }
-                Toast.makeText(mainActivity, R.string.pleaseMakeSureTheDeviceIsConnectedToTheInternet, Toast.LENGTH_LONG).show()
+                //確保Core Load好
+                checkCoreIsLoaded()
+                if(webView?.url == coreURL){
+                    Toast.makeText(mainActivity, R.string.pleaseMakeSureTheDeviceIsConnectedToTheInternet, Toast.LENGTH_LONG).show()
+                }
             }
         }
     }
