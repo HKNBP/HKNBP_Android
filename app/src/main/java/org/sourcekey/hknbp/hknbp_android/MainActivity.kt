@@ -14,47 +14,37 @@
 
 package org.sourcekey.hknbp.hknbp_android
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.media.AudioManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.webkit.*
-import android.app.Activity
 import android.app.ProgressDialog
-import android.graphics.Color
-import android.view.View.*
-import android.view.View.OnSystemUiVisibilityChangeListener
+import android.graphics.Bitmap
 import android.os.Build
 import android.view.*
-import android.widget.Button
-import java.util.*
-import android.os.AsyncTask
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import android.webkit.WebSettings
-import android.webkit.WebSettings.RenderPriority
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import android.webkit.WebView
 import android.webkit.WebChromeClient
 import androidx.core.app.ComponentActivity
 import androidx.core.app.ComponentActivity.ExtraData
 import androidx.core.content.ContextCompat.getSystemService
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import android.content.res.Configuration.UI_MODE_TYPE_TELEVISION
+import android.app.UiModeManager
+import android.content.res.Configuration
 
 
 
 class MainActivity : AppCompatActivity() {
-    val coreURL = "https://hknbp.org/"//"file:///android_asset/HKNBP_Core/index.html"
+    val coreURL = "https://hknbp.org/" //"http://192.168.0.169:8000"//"https://hknbp.org/"//"file:///android_asset/HKNBP_Core/index.html"
     val corePath = "HKNBP_Core.org.sourcekey.hknbp.hknbp_core"
     val coreKotlinJSPath = "javascript:${corePath}"
-    val appVersion: String = "v5-Android"
+    val appVersion: String = "v7-Android"
     val mainActivity: MainActivity = this
-    lateinit var webView: WebView
+    var webView: WebView? = null
 
     val remotePath = "${coreKotlinJSPath}.VirtualRemote"
 
@@ -67,46 +57,46 @@ class MainActivity : AppCompatActivity() {
         if(keyEvent?.action == KeyEvent.ACTION_DOWN){
             //實體搖控初始化
             when (keyEvent.keyCode) {
-                KeyEvent.KEYCODE_CHANNEL_UP             -> {webView.loadUrl("${remotePath}.nextChannelButton.click();")}
-                KeyEvent.KEYCODE_CHANNEL_DOWN           -> {webView.loadUrl("${remotePath}.previousChannelButton.click();")}
-                KeyEvent.KEYCODE_VOLUME_MUTE            -> {webView.loadUrl("${remotePath}.volumeMuteButton.click();")}
-                KeyEvent.KEYCODE_VOLUME_UP              -> {webView.loadUrl("${remotePath}.volumeUpButton.click();")}
-                KeyEvent.KEYCODE_VOLUME_DOWN            -> {webView.loadUrl("${remotePath}.volumeDownButton.click();")}
-                KeyEvent.KEYCODE_MEDIA_AUDIO_TRACK      -> {webView.loadUrl("${remotePath}.nextAudioButton.click();")}
-                KeyEvent.KEYCODE_CAPTIONS               -> {webView.loadUrl("${remotePath}.nextSubtitleButton.click();")}
-                KeyEvent.KEYCODE_DPAD_CENTER            -> {/*webView.loadUrl("${remotePath}.centerButton.click();")*/}
-                KeyEvent.KEYCODE_DPAD_UP                -> {/*webView.loadUrl("${remotePath}.upButton.click();")*/}
-                KeyEvent.KEYCODE_DPAD_DOWN              -> {/*webView.loadUrl("${remotePath}.downButton.click();")*/}
-                KeyEvent.KEYCODE_DPAD_LEFT              -> {/*webView.loadUrl("${remotePath}.leftButton.click();")*/}
-                KeyEvent.KEYCODE_DPAD_RIGHT             -> {/*webView.loadUrl("${remotePath}.rightButton.click();")*/}
-                KeyEvent.KEYCODE_TV_TIMER_PROGRAMMING   -> {webView.loadUrl("${remotePath}.epgButton.click();")}
-                KeyEvent.KEYCODE_GUIDE                  -> {webView.loadUrl("${remotePath}.epgButton.click();")}
-                KeyEvent.KEYCODE_0                      -> {webView.loadUrl("${remotePath}.number0Button.click();")}
-                KeyEvent.KEYCODE_1                      -> {webView.loadUrl("${remotePath}.number1Button.click();")}
-                KeyEvent.KEYCODE_2                      -> {webView.loadUrl("${remotePath}.number2Button.click();")}
-                KeyEvent.KEYCODE_3                      -> {webView.loadUrl("${remotePath}.number3Button.click();")}
-                KeyEvent.KEYCODE_4                      -> {webView.loadUrl("${remotePath}.number4Button.click();")}
-                KeyEvent.KEYCODE_5                      -> {webView.loadUrl("${remotePath}.number5Button.click();")}
-                KeyEvent.KEYCODE_6                      -> {webView.loadUrl("${remotePath}.number6Button.click();")}
-                KeyEvent.KEYCODE_7                      -> {webView.loadUrl("${remotePath}.number7Button.click();")}
-                KeyEvent.KEYCODE_8                      -> {webView.loadUrl("${remotePath}.number8Button.click();")}
-                KeyEvent.KEYCODE_9                      -> {webView.loadUrl("${remotePath}.number9Button.click();")}
-                KeyEvent.KEYCODE_TV_MEDIA_CONTEXT_MENU  -> {webView.loadUrl("${remotePath}.menuButton.click();")}
-                KeyEvent.KEYCODE_TV_CONTENTS_MENU       -> {webView.loadUrl("${remotePath}.menuButton.click();")}
-                KeyEvent.KEYCODE_INFO                   -> {webView.loadUrl("${remotePath}.tvChannelDescriptionButton.click();")}
-                KeyEvent.KEYCODE_TV_AUDIO_DESCRIPTION   -> {webView.loadUrl("${remotePath}.audioDescriptionButton.click();")}
-                KeyEvent.KEYCODE_PROG_RED               -> {webView.loadUrl("${remotePath}.programmableRedButton.click();")}
-                KeyEvent.KEYCODE_PROG_GREEN             -> {webView.loadUrl("${remotePath}.programmableGreenButton.click();")}
-                KeyEvent.KEYCODE_PROG_YELLOW            -> {webView.loadUrl("${remotePath}.programmableYellowButton.click();")}
-                KeyEvent.KEYCODE_PROG_BLUE              -> {webView.loadUrl("${remotePath}.programmableBlueButton.click();")}
-                KeyEvent.KEYCODE_LAST_CHANNEL           -> {webView.loadUrl("${remotePath}.lastTimeChannelButton.click();")}
+                KeyEvent.KEYCODE_CHANNEL_UP             -> {webView?.loadUrl("${remotePath}.nextChannelButton.click();")}
+                KeyEvent.KEYCODE_CHANNEL_DOWN           -> {webView?.loadUrl("${remotePath}.previousChannelButton.click();")}
+                KeyEvent.KEYCODE_VOLUME_MUTE            -> {webView?.loadUrl("${remotePath}.volumeMuteButton.click();")}
+                KeyEvent.KEYCODE_VOLUME_UP              -> {webView?.loadUrl("${remotePath}.volumeUpButton.click();")}
+                KeyEvent.KEYCODE_VOLUME_DOWN            -> {webView?.loadUrl("${remotePath}.volumeDownButton.click();")}
+                KeyEvent.KEYCODE_MEDIA_AUDIO_TRACK      -> {webView?.loadUrl("${remotePath}.nextAudioButton.click();")}
+                KeyEvent.KEYCODE_CAPTIONS               -> {webView?.loadUrl("${remotePath}.nextSubtitleButton.click();")}
+                KeyEvent.KEYCODE_DPAD_CENTER            -> {/*webView?.loadUrl("${remotePath}.centerButton.click();")*/}
+                KeyEvent.KEYCODE_DPAD_UP                -> {/*webView?.loadUrl("${remotePath}.upButton.click();")*/}
+                KeyEvent.KEYCODE_DPAD_DOWN              -> {/*webView?.loadUrl("${remotePath}.downButton.click();")*/}
+                KeyEvent.KEYCODE_DPAD_LEFT              -> {/*webView?.loadUrl("${remotePath}.leftButton.click();")*/}
+                KeyEvent.KEYCODE_DPAD_RIGHT             -> {/*webView?.loadUrl("${remotePath}.rightButton.click();")*/}
+                KeyEvent.KEYCODE_TV_TIMER_PROGRAMMING   -> {webView?.loadUrl("${remotePath}.epgButton.click();")}
+                KeyEvent.KEYCODE_GUIDE                  -> {webView?.loadUrl("${remotePath}.epgButton.click();")}
+                KeyEvent.KEYCODE_0                      -> {webView?.loadUrl("${remotePath}.number0Button.click();")}
+                KeyEvent.KEYCODE_1                      -> {webView?.loadUrl("${remotePath}.number1Button.click();")}
+                KeyEvent.KEYCODE_2                      -> {webView?.loadUrl("${remotePath}.number2Button.click();")}
+                KeyEvent.KEYCODE_3                      -> {webView?.loadUrl("${remotePath}.number3Button.click();")}
+                KeyEvent.KEYCODE_4                      -> {webView?.loadUrl("${remotePath}.number4Button.click();")}
+                KeyEvent.KEYCODE_5                      -> {webView?.loadUrl("${remotePath}.number5Button.click();")}
+                KeyEvent.KEYCODE_6                      -> {webView?.loadUrl("${remotePath}.number6Button.click();")}
+                KeyEvent.KEYCODE_7                      -> {webView?.loadUrl("${remotePath}.number7Button.click();")}
+                KeyEvent.KEYCODE_8                      -> {webView?.loadUrl("${remotePath}.number8Button.click();")}
+                KeyEvent.KEYCODE_9                      -> {webView?.loadUrl("${remotePath}.number9Button.click();")}
+                KeyEvent.KEYCODE_TV_MEDIA_CONTEXT_MENU  -> {webView?.loadUrl("${remotePath}.menuButton.click();")}
+                KeyEvent.KEYCODE_TV_CONTENTS_MENU       -> {webView?.loadUrl("${remotePath}.menuButton.click();")}
+                KeyEvent.KEYCODE_INFO                   -> {webView?.loadUrl("${remotePath}.tvChannelDescriptionButton.click();")}
+                KeyEvent.KEYCODE_TV_AUDIO_DESCRIPTION   -> {webView?.loadUrl("${remotePath}.audioDescriptionButton.click();")}
+                KeyEvent.KEYCODE_PROG_RED               -> {webView?.loadUrl("${remotePath}.programmableRedButton.click();")}
+                KeyEvent.KEYCODE_PROG_GREEN             -> {webView?.loadUrl("${remotePath}.programmableGreenButton.click();")}
+                KeyEvent.KEYCODE_PROG_YELLOW            -> {webView?.loadUrl("${remotePath}.programmableYellowButton.click();")}
+                KeyEvent.KEYCODE_PROG_BLUE              -> {webView?.loadUrl("${remotePath}.programmableBlueButton.click();")}
+                KeyEvent.KEYCODE_LAST_CHANNEL           -> {webView?.loadUrl("${remotePath}.lastTimeChannelButton.click();")}
                 KeyEvent.KEYCODE_WINDOW                 -> {/**畫中畫功能*/}
-                else                                    -> {webView.loadUrl("${coreKotlinJSPath}.PromptBox.promptMessage(\"本程式並無此功能提供${keyEvent.keyCode}\");")}
+                KeyEvent.KEYCODE_BACK                   -> {}
+                else                                    -> {webView?.loadUrl("${coreKotlinJSPath}.PromptBox.promptMessage(\"本程式並無此功能提供${keyEvent.keyCode}\");")}
             }
         }
         return super.dispatchKeyEvent(keyEvent)
     }
-
 
     fun showSystemUI() {
         // Shows the system bars by removing all the flags
@@ -166,12 +156,17 @@ class MainActivity : AppCompatActivity() {
     private fun setCheckCoreLoaded(){
         android.os.Handler().postDelayed({
             setCheckCoreLoaded()
-            if(!isCoreLoaded){webView.reload()}
-        }, 10000)
+            if(!isCoreLoaded){webView?.reload()}
+        }, 60000)
     }
 
     @JavascriptInterface fun returnCoreStatus(isLoaded: String){
         isCoreLoaded = isLoaded.toBoolean()
+    }
+
+    fun isDirectToTV(): Boolean{
+        val uiModeManager = getSystemService(Context.UI_MODE_SERVICE) as UiModeManager
+        return uiModeManager.currentModeType == Configuration.UI_MODE_TYPE_TELEVISION
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -188,41 +183,35 @@ class MainActivity : AppCompatActivity() {
         }
 
         webView = findViewById(R.id.webView)
-        webView.settings.domStorageEnabled = true
-        webView.settings.javaScriptCanOpenWindowsAutomatically = true//設定允許畀JavaScript彈另一個window
-        webView.settings.allowFileAccessFromFileURLs = true
-        webView.settings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK)//開啟離線網頁功能,為之後上唔到個網都可以用到
-        webView.settings.javaScriptEnabled = true//設定同JavaScript互Call權限
-        webView.addJavascriptInterface(this, "HKNBP_Android")
-        webView.loadUrl(coreURL)//"file:///android_asset/index.html"
-        webView.settings.setPluginState(WebSettings.PluginState.ON)
-        webView.settings.setPluginState(WebSettings.PluginState.ON_DEMAND)
-        webView.settings.setUserAgentString("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.137 Safari/537.36")//使用DesktopMode,YoutubeAPI需要DesktopMode先自動播放
-        if(Build.VERSION.SDK_INT>16){webView.settings.setMediaPlaybackRequiresUserGesture(false)}//Video自動播放
-        webView.setWebChromeClient(object : WebChromeClient() {
-            var progressDialog: ProgressDialog? = null
+        webView?.settings?.domStorageEnabled = true
+        webView?.settings?.javaScriptCanOpenWindowsAutomatically = true//設定允許畀JavaScript彈另一個window
+        webView?.settings?.allowFileAccessFromFileURLs = true
+        webView?.settings?.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK)//開啟離線網頁功能,為之後上唔到個網都可以用到
+        webView?.settings?.javaScriptEnabled = true//設定同JavaScript互Call權限
+        webView?.addJavascriptInterface(this, "HKNBP_Android")
+        webView?.settings?.setPluginState(WebSettings.PluginState.ON)
+        webView?.settings?.setPluginState(WebSettings.PluginState.ON_DEMAND)
+        webView?.settings?.setUserAgentString("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.137 Safari/537.36")//使用DesktopMode,YoutubeAPI需要DesktopMode先自動播放
+        if(Build.VERSION.SDK_INT>16){webView?.settings?.setMediaPlaybackRequiresUserGesture(false)}//Video自動播放
+        webView?.loadUrl(coreURL)
+
+        var progressDialogSimplify: ProgressDialogSimplify? = null
+        webView?.webChromeClient = object : WebChromeClient() {
             override fun onProgressChanged(webView: WebView, progress: Int) {
-                //顯示載入進度
-                if(webView.url == coreURL){
-                    if(progressDialog == null){
-                        //新增ProgressDialog
-                        progressDialog = ProgressDialog(mainActivity)
-                        progressDialog?.setMessage(getResources().getString(R.string.loaded))
-                        progressDialog?.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL)
-                        progressDialog?.setMax(100)
-                        progressDialog?.show()
-                        progressDialog?.setCancelable(false)
+                if(webView?.url == coreURL){
+                    //新增ProgressDialog
+                    if(progressDialogSimplify == null){
+                        progressDialogSimplify = ProgressDialogSimplify(
+                            mainActivity,
+                            getResources().getString(R.string.loaded)
+                        )
                     }
-                    progressDialog?.incrementProgressBy(progress)
-                    if(100 <= progress){
-                        //移除ProgressDialog
-                        progressDialog?.dismiss()
-                        progressDialog = null
-                    }
+                    //更新ProgressDialog顯示載入進度
+                    progressDialogSimplify?.change(webView?.progress)
                 }
             }
-        })
-        webView.webViewClient = object : WebViewClient() {
+        }
+        webView?.webViewClient = object : WebViewClient() {
             private fun checkCoreIsLoaded(){
                 webView?.loadUrl("""javascript:
                     try{
@@ -239,15 +228,20 @@ class MainActivity : AppCompatActivity() {
 
             override fun onPageFinished(webView: WebView, url: String) {
                 super.onPageFinished(webView, url)
+                if(webView?.url == coreURL){
+                    //移除ProgressDialog
+                    progressDialogSimplify?.remove()
+                }
+
                 //Set個Function落HKNBP_Core嘅JavaScript度畀佢之後可以Call返來執行某啲動作
-                webView.loadUrl("${coreKotlinJSPath}.UserControlPanel.onShowUserControlPanel=function(){HKNBP_Android.requestSystemUI(true);};")
-                webView.loadUrl("${coreKotlinJSPath}.UserControlPanel.onHideUserControlPanel=function(){HKNBP_Android.requestSystemUI(false);};")
+                webView?.loadUrl("${coreKotlinJSPath}.UserControlPanel.onShowUserControlPanel=function(){HKNBP_Android.requestSystemUI(true);};")
+                webView?.loadUrl("${coreKotlinJSPath}.UserControlPanel.onHideUserControlPanel=function(){HKNBP_Android.requestSystemUI(false);};")
                 //虛擬搖控鍵設換
-                webView.loadUrl("${coreKotlinJSPath}.Player.Companion.volumeUp=function(){HKNBP_Android.volumeUp();};")
-                webView.loadUrl("${coreKotlinJSPath}.Player.Companion.volumeDown=function(){HKNBP_Android.volumeDown();};")
-                webView.loadUrl("${coreKotlinJSPath}.Player.Companion.volumeMute=function(){HKNBP_Android.volumeMute();};")
+                webView?.loadUrl("${coreKotlinJSPath}.Player.Companion.volumeUp=function(){HKNBP_Android.volumeUp();};")
+                webView?.loadUrl("${coreKotlinJSPath}.Player.Companion.volumeDown=function(){HKNBP_Android.volumeDown();};")
+                webView?.loadUrl("${coreKotlinJSPath}.Player.Companion.volumeMute=function(){HKNBP_Android.volumeMute();};")
                 //話畀Core知個App係咩版本
-                webView.loadUrl("javascript:window.setTimeout(function(){${corePath}.appVersion=\"${appVersion}\";},0)")
+                webView?.loadUrl("javascript:window.setTimeout(function(){${corePath}.appVersion=\"${appVersion}\";},0)")
                 //確保Core Load好
                 checkCoreIsLoaded()
             }
@@ -263,24 +257,31 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    /**
-    private fun initWebView() {
-        mWebView.getSettings().setJavaScriptEnabled(true)
-        mWebView.getSettings().setRenderPriority(RenderPriority.HIGH)
-        mWebView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT) //Set the cache mode
-        // Open the DOM storage API function
-        mWebView.getSettings().setDomStorageEnabled(true)
-        //Open the database storage API function
-        mWebView.getSettings().setDatabaseEnabled(true)
-        val cacheDirPath = filesDir.absolutePath + APP_CACAHE_DIRNAME
-        // String cacheDirPath = getCacheDir().getAbsolutePath()+Constant.APP_DB_DIRNAME;
-        Log.i(FragmentActivity.TAG, "cacheDirPath=$cacheDirPath")
-        //Set the database cache path
-        mWebView.getSettings().setDatabasePath(cacheDirPath)
-        //Set the Application Caches cache directory
-        mWebView.getSettings().setAppCachePath(cacheDirPath)
-        //Open the Application Caches function
-        mWebView.getSettings().setAppCacheEnabled(true)
-    }*/
+    override fun onResume() {
+        super.onResume()
+        webView?.onResume()
+        webView?.resumeTimers()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        webView?.onPause()
+        webView?.pauseTimers()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        if(isDirectToTV()){finish()}
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        webView?.loadUrl("about:blank")
+        webView?.stopLoading()
+        webView?.setWebChromeClient(null)
+        webView?.setWebViewClient(null)
+        webView?.destroy()
+        webView = null
+    }
 }
 
