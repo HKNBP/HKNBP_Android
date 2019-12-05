@@ -14,35 +14,35 @@
 
 package org.sourcekey.hknbp.hknbp_android
 
-import android.content.Context
-import android.media.AudioManager
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import android.webkit.*
-import android.app.ProgressDialog
-import android.graphics.Bitmap
-import android.os.Build
-import android.view.*
-import android.widget.Toast
-import androidx.core.content.ContextCompat
-import android.webkit.WebSettings
-import android.webkit.WebView
-import android.webkit.WebChromeClient
-import androidx.core.app.ComponentActivity
-import androidx.core.app.ComponentActivity.ExtraData
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-import android.content.res.Configuration.UI_MODE_TYPE_TELEVISION
+import android.app.AlertDialog
 import android.app.UiModeManager
+import android.content.ActivityNotFoundException
+import android.content.Context
+import android.content.DialogInterface
+import android.content.Intent
+import android.content.pm.PackageManager
 import android.content.res.Configuration
-
+import android.media.AudioManager
+import android.net.Uri
+import android.os.Build
+import android.os.Bundle
+import android.util.Log
+import android.view.KeyEvent
+import android.view.View
+import android.webkit.*
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.fragment.app.FragmentActivity
 
 
 class MainActivity : AppCompatActivity() {
     val coreURL = "https://hknbp.org/" //"http://192.168.0.169:8000"//"https://hknbp.org/"//"file:///android_asset/HKNBP_Core/index.html"
     val corePath = "HKNBP_Core.org.sourcekey.hknbp.hknbp_core"
     val coreKotlinJSPath = "javascript:${corePath}"
-    val appVersion: String = "v7-Android"
+    val appVersion = "v${BuildConfig.VERSION_CODE}-Android"
+    val webViewPackageName = "com.google.android.webview"
+    val firefoxPackageName = "org.mozilla.firefox"
     val mainActivity: MainActivity = this
     var webView: WebView? = null
 
@@ -53,9 +53,15 @@ class MainActivity : AppCompatActivity() {
      * 唔限某特定View
      * 唔使個個View去setOnKeyListener
      */
-    override fun dispatchKeyEvent(keyEvent: KeyEvent): Boolean {
+    override fun dispatchKeyEvent(keyEvent: KeyEvent?): Boolean {
+        //由於有時未能跟HTML嘅autofocus去先Focus一個位置
+        webView?.loadUrl("""javascript:
+            if($(":focus").parents("#body").length){}else{
+                document.getElementById("userControlPanelShower").focus();
+            }
+        """)
+        //實體搖控初始化
         if(keyEvent?.action == KeyEvent.ACTION_DOWN){
-            //實體搖控初始化
             when (keyEvent.keyCode) {
                 KeyEvent.KEYCODE_CHANNEL_UP             -> {webView?.loadUrl("${remotePath}.nextChannelButton.click();")}
                 KeyEvent.KEYCODE_CHANNEL_DOWN           -> {webView?.loadUrl("${remotePath}.previousChannelButton.click();")}
@@ -156,12 +162,169 @@ class MainActivity : AppCompatActivity() {
     private fun setCheckCoreLoaded(){
         android.os.Handler().postDelayed({
             setCheckCoreLoaded()
-            if(!isCoreLoaded){webView?.reload()}
+            if(!isCoreLoaded){webView?.loadUrl(coreURL)}
         }, 60000)
     }
 
     @JavascriptInterface fun returnCoreStatus(isLoaded: String){
         isCoreLoaded = isLoaded.toBoolean()
+    }
+
+    fun createUpdateAlertByGooglePlayStore(
+        title: String?,
+        message: String?,
+        button: Boolean,
+        appPackageName: String
+    ){
+        val alertDialog: AlertDialog = AlertDialog.Builder(this).create()
+        alertDialog.setTitle(title)
+        alertDialog.setMessage(message)
+        if (button == true) {
+            alertDialog.setButton("Download Now",
+                DialogInterface.OnClickListener { arg0, arg1 ->
+                    try {
+                        val browserIntent = Intent(
+                            Intent.ACTION_VIEW,
+                            Uri.parse("market://details?id=$appPackageName")
+                        )
+                        startActivity(browserIntent)
+                    } catch (anfe: ActivityNotFoundException) {
+                        val browserIntent = Intent(
+                            Intent.ACTION_VIEW,
+                            Uri.parse("https://play.google.com/store/apps/details?id=$appPackageName")
+                        )
+                        startActivity(browserIntent)
+                    }
+                })
+        }
+        alertDialog.show()
+    }
+
+    fun initWebView(){
+        try {
+            val webViewVersion = packageManager.getPackageInfo(webViewPackageName, 0).versionName
+            if(51 <= webViewVersion.split(".").getOrNull(0)?.toIntOrNull()?:0){//支援ES6嘅版本
+                //設置WebView
+                webView = findViewById(R.id.webView)
+                //Log.i("WebView", webView?.getSettings()?.getUserAgentString())
+                webView?.settings?.domStorageEnabled = true
+                webView?.settings?.javaScriptCanOpenWindowsAutomatically = true//設定允許畀JavaScript彈另一個window
+                webView?.settings?.allowFileAccessFromFileURLs = true
+                webView?.settings?.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK)//開啟離線網頁功能,為之後上唔到個網都可以用到
+                webView?.settings?.javaScriptEnabled = true//設定同JavaScript互Call權限
+                webView?.addJavascriptInterface(this, "HKNBP_Android")
+                webView?.settings?.setPluginState(WebSettings.PluginState.ON)
+                webView?.settings?.setPluginState(WebSettings.PluginState.ON_DEMAND)
+                webView?.settings?.setUserAgentString("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.137 Safari/537.36")//使用DesktopMode,YoutubeAPI需要DesktopMode先自動播放
+                if(Build.VERSION.SDK_INT>16){webView?.settings?.setMediaPlaybackRequiresUserGesture(false)}//Video自動播放
+                var progressDialogSimplify: ProgressDialogSimplify? = null
+                webView?.webChromeClient = object : WebChromeClient() {
+                    override fun onProgressChanged(webView: WebView, progress: Int) {
+                        if(webView?.url == coreURL){
+                            //新增ProgressDialog
+                            if(progressDialogSimplify == null){
+                                progressDialogSimplify = ProgressDialogSimplify(
+                                    mainActivity,
+                                    getResources().getString(R.string.loaded)
+                                )
+                            }
+                            //更新ProgressDialog顯示載入進度
+                            progressDialogSimplify?.change(webView?.progress)
+                        }
+                    }
+                }
+                webView?.webViewClient = object : WebViewClient() {
+                    private fun checkCoreIsLoaded(webView: WebView?){
+                        if(webView?.url == coreURL){
+                            webView?.loadUrl("""javascript:
+                        try{
+                            if(${corePath}){
+                                HKNBP_Android.returnCoreStatus(true);
+                            }else{
+                                HKNBP_Android.returnCoreStatus(false);
+                            }
+                        }catch(e){
+                            HKNBP_Android.returnCoreStatus(false);
+                        }
+                    """)
+                        }
+                    }
+
+                    override fun onPageFinished(webView: WebView, url: String) {
+                        super.onPageFinished(webView, url)
+                        //移除ProgressDialog
+                        if(webView?.url == coreURL){ progressDialogSimplify?.remove() }
+                        //Set個Function落HKNBP_Core嘅JavaScript度畀佢之後可以Call返來執行某啲動作
+                        webView?.loadUrl("${coreKotlinJSPath}.UserControlPanel.onShowUserControlPanel=function(){HKNBP_Android.requestSystemUI(true);};")
+                        webView?.loadUrl("${coreKotlinJSPath}.UserControlPanel.onHideUserControlPanel=function(){HKNBP_Android.requestSystemUI(false);};")
+                        //虛擬搖控鍵設換
+                        webView?.loadUrl("${coreKotlinJSPath}.Player.Companion.volumeUp=function(){HKNBP_Android.volumeUp();};")
+                        webView?.loadUrl("${coreKotlinJSPath}.Player.Companion.volumeDown=function(){HKNBP_Android.volumeDown();};")
+                        webView?.loadUrl("${coreKotlinJSPath}.Player.Companion.volumeMute=function(){HKNBP_Android.volumeMute();};")
+                        //話畀Core知個App係咩版本
+                        webView?.loadUrl("javascript:window.setTimeout(function(){${corePath}.appVersion=\"${appVersion}\";},0)")
+                        //確保Core Load好
+                        checkCoreIsLoaded(webView)
+                    }
+
+                    override fun onReceivedError(webView: WebView?, request: WebResourceRequest?, error: WebResourceError?) {
+                        super.onReceivedError(webView, request, error)
+                        //確保Core Load好
+                        checkCoreIsLoaded(webView)
+                        if(webView?.url == coreURL){
+                            Toast.makeText(mainActivity, R.string.pleaseMakeSureTheDeviceIsConnectedToTheInternet, Toast.LENGTH_LONG).show()
+                        }
+                    }
+                }
+                webView?.loadUrl(coreURL)
+            }else{
+                createUpdateAlertByGooglePlayStore(
+                    getResources().getString(R.string.needUpdateYourWebView),
+                    getResources().getString(R.string.thisApplicationUseWebViewWithSupportES6),
+                    true,
+                    webViewPackageName
+                )
+            }
+        } catch (e: Exception) {
+            //Log.e("WebView", "Android System WebView is not found")
+            createUpdateAlertByGooglePlayStore(
+                getResources().getString(R.string.needInstallWebView),
+                getResources().getString(R.string.pleaseInstallWebViewFromeGooglePlayStore),
+                true,
+                webViewPackageName
+            )
+        }
+    }
+
+    fun switchFirefoxRun(){
+        try {
+            val webViewVersion = packageManager.getPackageInfo(firefoxPackageName, 0).versionName
+            Log.i("XXX", webViewVersion)
+            if(68 <= webViewVersion.split(".").getOrNull(0)?.toIntOrNull()?:0){//68版本測試未發現有問題
+                //使用Firefox開啟HKNBP
+                val browserIntent = Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse(coreURL)
+                )
+                browserIntent.setPackage(firefoxPackageName)
+                startActivity(browserIntent)
+            }else{
+                createUpdateAlertByGooglePlayStore(
+                    getResources().getString(R.string.needUpdateYourFirefox),
+                    getResources().getString(R.string.thisApplicationUseFirefoxWithSupportES6),
+                    true,
+                    firefoxPackageName
+                )
+            }
+        } catch (e: Exception) {
+            //Log.e("WebView", "Android System WebView is not found")
+            createUpdateAlertByGooglePlayStore(
+                getResources().getString(R.string.needInstallFirefox),
+                getResources().getString(R.string.pleaseInstallFirefoxFromeGooglePlayStore),
+                true,
+                firefoxPackageName
+            )
+        }
     }
 
     fun isDirectToTV(): Boolean{
@@ -177,100 +340,40 @@ class MainActivity : AppCompatActivity() {
         setSystemUIController()
         setCheckCoreLoaded()
 
-        if (Build.VERSION.SDK_INT >= 21) {
+        if (21 <= Build.VERSION.SDK_INT) {
             getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.background)) // Navigation bar the soft bottom of some phones like nexus and some Samsung note series
             getWindow().setStatusBarColor(ContextCompat.getColor(this,R.color.background)) //status bar or the time bar at the top
-        }
-
-        webView = findViewById(R.id.webView)
-        webView?.settings?.domStorageEnabled = true
-        webView?.settings?.javaScriptCanOpenWindowsAutomatically = true//設定允許畀JavaScript彈另一個window
-        webView?.settings?.allowFileAccessFromFileURLs = true
-        webView?.settings?.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK)//開啟離線網頁功能,為之後上唔到個網都可以用到
-        webView?.settings?.javaScriptEnabled = true//設定同JavaScript互Call權限
-        webView?.addJavascriptInterface(this, "HKNBP_Android")
-        webView?.settings?.setPluginState(WebSettings.PluginState.ON)
-        webView?.settings?.setPluginState(WebSettings.PluginState.ON_DEMAND)
-        webView?.settings?.setUserAgentString("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.137 Safari/537.36")//使用DesktopMode,YoutubeAPI需要DesktopMode先自動播放
-        if(Build.VERSION.SDK_INT>16){webView?.settings?.setMediaPlaybackRequiresUserGesture(false)}//Video自動播放
-        webView?.loadUrl(coreURL)
-
-        var progressDialogSimplify: ProgressDialogSimplify? = null
-        webView?.webChromeClient = object : WebChromeClient() {
-            override fun onProgressChanged(webView: WebView, progress: Int) {
-                if(webView?.url == coreURL){
-                    //新增ProgressDialog
-                    if(progressDialogSimplify == null){
-                        progressDialogSimplify = ProgressDialogSimplify(
-                            mainActivity,
-                            getResources().getString(R.string.loaded)
-                        )
-                    }
-                    //更新ProgressDialog顯示載入進度
-                    progressDialogSimplify?.change(webView?.progress)
-                }
-            }
-        }
-        webView?.webViewClient = object : WebViewClient() {
-            private fun checkCoreIsLoaded(){
-                webView?.loadUrl("""javascript:
-                    try{
-                        if(${corePath}){
-                            HKNBP_Android.returnCoreStatus(true);
-                        }else{
-                            HKNBP_Android.returnCoreStatus(false);
-                        }
-                    }catch(e){
-                        HKNBP_Android.returnCoreStatus(false);
-                    }
-                """)
-            }
-
-            override fun onPageFinished(webView: WebView, url: String) {
-                super.onPageFinished(webView, url)
-                if(webView?.url == coreURL){
-                    //移除ProgressDialog
-                    progressDialogSimplify?.remove()
-                }
-
-                //Set個Function落HKNBP_Core嘅JavaScript度畀佢之後可以Call返來執行某啲動作
-                webView?.loadUrl("${coreKotlinJSPath}.UserControlPanel.onShowUserControlPanel=function(){HKNBP_Android.requestSystemUI(true);};")
-                webView?.loadUrl("${coreKotlinJSPath}.UserControlPanel.onHideUserControlPanel=function(){HKNBP_Android.requestSystemUI(false);};")
-                //虛擬搖控鍵設換
-                webView?.loadUrl("${coreKotlinJSPath}.Player.Companion.volumeUp=function(){HKNBP_Android.volumeUp();};")
-                webView?.loadUrl("${coreKotlinJSPath}.Player.Companion.volumeDown=function(){HKNBP_Android.volumeDown();};")
-                webView?.loadUrl("${coreKotlinJSPath}.Player.Companion.volumeMute=function(){HKNBP_Android.volumeMute();};")
-                //話畀Core知個App係咩版本
-                webView?.loadUrl("javascript:window.setTimeout(function(){${corePath}.appVersion=\"${appVersion}\";},0)")
-                //確保Core Load好
-                checkCoreIsLoaded()
-            }
-
-            override fun onReceivedError(webView: WebView?, request: WebResourceRequest?, error: WebResourceError?) {
-                super.onReceivedError(webView, request, error)
-                //確保Core Load好
-                checkCoreIsLoaded()
-                if(webView?.url == coreURL){
-                    Toast.makeText(mainActivity, R.string.pleaseMakeSureTheDeviceIsConnectedToTheInternet, Toast.LENGTH_LONG).show()
-                }
-            }
         }
     }
 
     override fun onResume() {
         super.onResume()
+
+        //因Android5之前嘅WebView不能透過PlayStore更新
+        //所以需要使用仲有為Android5之前嘅系統更新嘅瀏覽器運行HKNBP
+        if(21 <= Build.VERSION.SDK_INT){
+            webView?:initWebView()
+        }else{
+            switchFirefoxRun()
+        }
+
         webView?.onResume()
         webView?.resumeTimers()
     }
 
     override fun onPause() {
         super.onPause()
+
         webView?.onPause()
         webView?.pauseTimers()
     }
 
     override fun onStop() {
         super.onStop()
+
+        //由於AndroidTV唔知點解收埋左唔行onDestroy()但打開返又行onCreate()
+        //而呢個情況會令WebView嘅Video唔能夠播返(好似仲因為佢以為個App仍收埋緊而繼續停唔畀播)
+        //所以當AndroidTV一收埋左就行onDestroy()
         if(isDirectToTV()){finish()}
     }
 
