@@ -16,11 +16,8 @@ package org.sourcekey.hknbp.hknbp_android
 
 import android.app.AlertDialog
 import android.app.UiModeManager
-import android.content.ActivityNotFoundException
-import android.content.Context
-import android.content.DialogInterface
-import android.content.Intent
-import android.content.pm.PackageManager
+import android.content.*
+import android.content.res.AssetManager
 import android.content.res.Configuration
 import android.media.AudioManager
 import android.net.Uri
@@ -33,7 +30,8 @@ import android.webkit.*
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.FragmentActivity
+import java.io.*
+import java.io.File.separator
 
 
 class MainActivity : AppCompatActivity() {
@@ -44,6 +42,7 @@ class MainActivity : AppCompatActivity() {
     val webViewPackageName = "com.google.android.webview"
     val firefoxPackageName = "org.mozilla.firefox"
     val mainActivity: MainActivity = this
+    var saver: SharedPreferences? = null
     var webView: WebView? = null
 
     val remotePath = "${coreKotlinJSPath}.VirtualRemote"
@@ -53,7 +52,7 @@ class MainActivity : AppCompatActivity() {
      * 唔限某特定View
      * 唔使個個View去setOnKeyListener
      */
-    override fun dispatchKeyEvent(keyEvent: KeyEvent?): Boolean {
+    override fun superDispatchKeyEvent(keyEvent: KeyEvent?): Boolean {
         //由於有時未能跟HTML嘅autofocus去先Focus一個位置
         webView?.loadUrl("""javascript:
             if($(":focus").parents("#body").length){}else{
@@ -72,7 +71,11 @@ class MainActivity : AppCompatActivity() {
                 KeyEvent.KEYCODE_CAPTIONS               -> {webView?.loadUrl("${remotePath}.nextSubtitleButton.click();")}
                 KeyEvent.KEYCODE_DPAD_CENTER            -> {/*webView?.loadUrl("${remotePath}.centerButton.click();")*/}
                 KeyEvent.KEYCODE_DPAD_UP                -> {/*webView?.loadUrl("${remotePath}.upButton.click();")*/}
+                KeyEvent.KEYCODE_DPAD_UP_LEFT           -> {}
+                KeyEvent.KEYCODE_DPAD_UP_RIGHT          -> {}
                 KeyEvent.KEYCODE_DPAD_DOWN              -> {/*webView?.loadUrl("${remotePath}.downButton.click();")*/}
+                KeyEvent.KEYCODE_DPAD_DOWN_LEFT         -> {}
+                KeyEvent.KEYCODE_DPAD_DOWN_RIGHT        -> {}
                 KeyEvent.KEYCODE_DPAD_LEFT              -> {/*webView?.loadUrl("${remotePath}.leftButton.click();")*/}
                 KeyEvent.KEYCODE_DPAD_RIGHT             -> {/*webView?.loadUrl("${remotePath}.rightButton.click();")*/}
                 KeyEvent.KEYCODE_TV_TIMER_PROGRAMMING   -> {webView?.loadUrl("${remotePath}.epgButton.click();")}
@@ -101,7 +104,7 @@ class MainActivity : AppCompatActivity() {
                 else                                    -> {webView?.loadUrl("${coreKotlinJSPath}.PromptBox.promptMessage(\"本程式並無此功能提供${keyEvent.keyCode}\");")}
             }
         }
-        return super.dispatchKeyEvent(keyEvent)
+        return super.superDispatchKeyEvent(keyEvent)
     }
 
     fun showSystemUI() {
@@ -160,10 +163,17 @@ class MainActivity : AppCompatActivity() {
 
     private var isCoreLoaded = false
     private fun setCheckCoreLoaded(){
-        android.os.Handler().postDelayed({
-            setCheckCoreLoaded()
-            if(!isCoreLoaded){webView?.loadUrl(coreURL)}
-        }, 60000)
+        if(isCoreLoaded){
+            //設置已唔係首次運行程式
+            val editer = saver?.edit()
+            editer?.putBoolean("isLoadedCoreOnCache", false)
+            editer?.apply()
+        }else{
+            //重Load Core
+            webView?.loadUrl(coreURL)
+        }
+        //重新倒數再檢查Core Load好未
+        android.os.Handler().postDelayed({ setCheckCoreLoaded() }, 60000)
     }
 
     @JavascriptInterface fun returnCoreStatus(isLoaded: String){
@@ -200,91 +210,147 @@ class MainActivity : AppCompatActivity() {
         alertDialog.show()
     }
 
+    fun AssetManager.copyAssetFile(srcName: String, dstName: String): Boolean {
+        return try {
+            val `in` = this.open(srcName)
+            val outFile = File(dstName)
+            val out: OutputStream = FileOutputStream(outFile)
+            val buffer = ByteArray(1024)
+            var read: Int
+            while (`in`.read(buffer).also { read = it } != -1) {
+                out.write(buffer, 0, read)
+            }
+            `in`.close()
+            out.close()
+            true
+        } catch (e: IOException) {
+            e.printStackTrace()
+            false
+        }
+    }
+
+    fun AssetManager.copyAssetFolder(srcName: String, dstName: String): Boolean {
+        return try {
+            var result = true
+            val fileList = this.list(srcName) ?: return false
+            if (fileList.size == 0) {
+                result = copyAssetFile(srcName, dstName)
+            } else {
+                val file = File(dstName)
+                result = file.mkdirs()
+                for (filename in fileList) {
+                    result = result and copyAssetFolder(
+                        srcName + separator.toString() + filename,
+                        dstName + separator.toString() + filename
+                    )
+                }
+            }
+            result
+        } catch (e: IOException) {
+            e.printStackTrace()
+            false
+        }
+    }
+
     fun initWebView(){
         try {
-            val webViewVersion = packageManager.getPackageInfo(webViewPackageName, 0).versionName
-            if(51 <= webViewVersion.split(".").getOrNull(0)?.toIntOrNull()?:0){//支援ES6嘅版本
-                //設置WebView
-                webView = findViewById(R.id.webView)
-                //Log.i("WebView", webView?.getSettings()?.getUserAgentString())
-                webView?.settings?.domStorageEnabled = true
-                webView?.settings?.javaScriptCanOpenWindowsAutomatically = true//設定允許畀JavaScript彈另一個window
-                webView?.settings?.allowFileAccessFromFileURLs = true
-                webView?.settings?.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK)//開啟離線網頁功能,為之後上唔到個網都可以用到
-                webView?.settings?.javaScriptEnabled = true//設定同JavaScript互Call權限
-                webView?.addJavascriptInterface(this, "HKNBP_Android")
-                webView?.settings?.setPluginState(WebSettings.PluginState.ON)
-                webView?.settings?.setPluginState(WebSettings.PluginState.ON_DEMAND)
-                webView?.settings?.setUserAgentString("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.137 Safari/537.36")//使用DesktopMode,YoutubeAPI需要DesktopMode先自動播放
-                if(Build.VERSION.SDK_INT>16){webView?.settings?.setMediaPlaybackRequiresUserGesture(false)}//Video自動播放
-                var progressDialogSimplify: ProgressDialogSimplify? = null
-                webView?.webChromeClient = object : WebChromeClient() {
-                    override fun onProgressChanged(webView: WebView, progress: Int) {
-                        if(webView?.url == coreURL){
-                            //新增ProgressDialog
-                            if(progressDialogSimplify == null){
-                                progressDialogSimplify = ProgressDialogSimplify(
-                                    mainActivity,
-                                    getResources().getString(R.string.loaded)
-                                )
-                            }
-                            //更新ProgressDialog顯示載入進度
-                            progressDialogSimplify?.change(webView?.progress)
-                        }
-                    }
-                }
-                webView?.webViewClient = object : WebViewClient() {
-                    private fun checkCoreIsLoaded(webView: WebView?){
-                        if(webView?.url == coreURL){
-                            webView?.loadUrl("""javascript:
-                        try{
-                            if(${corePath}){
-                                HKNBP_Android.returnCoreStatus(true);
-                            }else{
-                                HKNBP_Android.returnCoreStatus(false);
-                            }
-                        }catch(e){
-                            HKNBP_Android.returnCoreStatus(false);
-                        }
-                    """)
-                        }
-                    }
-
-                    override fun onPageFinished(webView: WebView, url: String) {
-                        super.onPageFinished(webView, url)
-                        //移除ProgressDialog
-                        if(webView?.url == coreURL){ progressDialogSimplify?.remove() }
-                        //Set個Function落HKNBP_Core嘅JavaScript度畀佢之後可以Call返來執行某啲動作
-                        webView?.loadUrl("${coreKotlinJSPath}.UserControlPanel.onShowUserControlPanel=function(){HKNBP_Android.requestSystemUI(true);};")
-                        webView?.loadUrl("${coreKotlinJSPath}.UserControlPanel.onHideUserControlPanel=function(){HKNBP_Android.requestSystemUI(false);};")
-                        //虛擬搖控鍵設換
-                        webView?.loadUrl("${coreKotlinJSPath}.Player.Companion.volumeUp=function(){HKNBP_Android.volumeUp();};")
-                        webView?.loadUrl("${coreKotlinJSPath}.Player.Companion.volumeDown=function(){HKNBP_Android.volumeDown();};")
-                        webView?.loadUrl("${coreKotlinJSPath}.Player.Companion.volumeMute=function(){HKNBP_Android.volumeMute();};")
-                        //話畀Core知個App係咩版本
-                        webView?.loadUrl("javascript:window.setTimeout(function(){${corePath}.appVersion=\"${appVersion}\";},0)")
-                        //確保Core Load好
-                        checkCoreIsLoaded(webView)
-                    }
-
-                    override fun onReceivedError(webView: WebView?, request: WebResourceRequest?, error: WebResourceError?) {
-                        super.onReceivedError(webView, request, error)
-                        //確保Core Load好
-                        checkCoreIsLoaded(webView)
-                        if(webView?.url == coreURL){
-                            Toast.makeText(mainActivity, R.string.pleaseMakeSureTheDeviceIsConnectedToTheInternet, Toast.LENGTH_LONG).show()
-                        }
-                    }
-                }
-                webView?.loadUrl(coreURL)
-            }else{
-                createUpdateAlertByGooglePlayStore(
-                    getResources().getString(R.string.needUpdateYourWebView),
-                    getResources().getString(R.string.thisApplicationUseWebViewWithSupportES6),
-                    true,
-                    webViewPackageName
+            //檢查係米首次運行程式
+            if(saver?.getBoolean("isLoadedCoreOnCache", true)?:true){
+                //由Assets度複製HKNBP_Core嘅WebviewCache到本程式數據資料夾度
+                getApplicationContext().assets.copyAssetFolder(
+                    "app_webview",
+                    getApplicationContext().filesDir.getParent()+"/app_webview"
                 )
             }
+            //設置WebView
+            webView = findViewById(R.id.webView)
+            Log.i("WebViewVersion", webView?.getSettings()?.getUserAgentString())
+            webView?.settings?.domStorageEnabled = true
+            webView?.settings?.javaScriptCanOpenWindowsAutomatically = true//設定允許畀JavaScript彈另一個window
+            webView?.settings?.allowFileAccessFromFileURLs = true
+            webView?.settings?.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK)//開啟離線網頁功能,為之後上唔到個網都可以用到
+            webView?.settings?.javaScriptEnabled = true//設定同JavaScript互Call權限
+            webView?.addJavascriptInterface(this, "HKNBP_Android")
+            webView?.settings?.setPluginState(WebSettings.PluginState.ON)
+            webView?.settings?.setPluginState(WebSettings.PluginState.ON_DEMAND)
+            webView?.settings?.setUserAgentString("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.137 Safari/537.36")//使用DesktopMode,YoutubeAPI需要DesktopMode先自動播放
+            if(Build.VERSION.SDK_INT>16){webView?.settings?.setMediaPlaybackRequiresUserGesture(false)}//Video自動播放
+            /*var progressDialogSimplify: ProgressDialogSimplify? = null
+            webView?.webChromeClient = object : WebChromeClient() {
+                override fun onProgressChanged(webView: WebView, progress: Int) {
+                    if(webView?.url == coreURL){
+                        //新增ProgressDialog
+                        if(progressDialogSimplify == null){
+                            progressDialogSimplify = ProgressDialogSimplify(
+                                mainActivity,
+                                getResources().getString(R.string.loaded)
+                            )
+                        }
+                        //更新ProgressDialog顯示載入進度
+                        progressDialogSimplify?.change(webView?.progress)
+                    }
+                }
+            }*/
+            webView?.webViewClient = object : WebViewClient() {
+                private fun checkCoreIsLoaded(webView: WebView?){
+                    if(webView?.url?.matches("(.*)${coreURL}(.*)".toRegex()) == true){//檢查個webView係米HKNBP根目錄
+                        webView?.loadUrl("""javascript:
+                            try{
+                                if(${corePath}){
+                                    HKNBP_Android.returnCoreStatus(true);
+                                }else{
+                                    HKNBP_Android.returnCoreStatus(false);
+                                }
+                            }catch(e){
+                                HKNBP_Android.returnCoreStatus(false);
+                            }
+                        """)
+                    }
+                }
+
+                override fun onPageFinished(webView: WebView, url: String) {
+                    super.onPageFinished(webView, url)
+                    /*//移除ProgressDialog
+                    if(webView?.url?.matches("(.*)${coreURL}(.*)".toRegex()) == true){
+                        progressDialogSimplify?.remove()
+                        //防冇隱藏progressDialog, 因試過唔知咩事唔識隱藏
+                        android.os.Handler().postDelayed({ progressDialogSimplify?.remove() }, 1000)
+                        android.os.Handler().postDelayed({ progressDialogSimplify?.remove() }, 5000)
+                        android.os.Handler().postDelayed({ progressDialogSimplify?.remove() }, 10000)
+                        android.os.Handler().postDelayed({ progressDialogSimplify?.remove() }, 60000)
+                    }*/
+                    //Set個Function落HKNBP_Core嘅JavaScript度畀佢之後可以Call返來執行某啲動作
+                    webView?.loadUrl("${coreKotlinJSPath}.UserControlPanel.onShowUserControlPanel=function(){HKNBP_Android.requestSystemUI(true);};")
+                    webView?.loadUrl("${coreKotlinJSPath}.UserControlPanel.onHideUserControlPanel=function(){HKNBP_Android.requestSystemUI(false);};")
+                    //虛擬搖控鍵設換
+                    webView?.loadUrl("${coreKotlinJSPath}.Player.Companion.volumeUp=function(){HKNBP_Android.volumeUp();};")
+                    webView?.loadUrl("${coreKotlinJSPath}.Player.Companion.volumeDown=function(){HKNBP_Android.volumeDown();};")
+                    webView?.loadUrl("${coreKotlinJSPath}.Player.Companion.volumeMute=function(){HKNBP_Android.volumeMute();};")
+                    //話畀Core知個App係咩版本
+                    webView?.loadUrl("javascript:window.setTimeout(function(){${corePath}.appVersion=\"${appVersion}\";},0)")
+                    /*//顯一顯示VirtualRemote,因Google好似唔知本程式已有DPAD功能而不斷唔畀將程式發報到AndroidTV度
+                    if(isDirectToTV()){
+                        webView?.loadUrl("""javascript:
+                            ${corePath}.UserControlPanel.show();
+                            window.setTimeout(function(){
+                                ${corePath}.UserControlPanel.hide();
+                            }, 3000);
+                        """)
+                    }*/
+                    //確保Core Load好
+                    checkCoreIsLoaded(webView)
+                }
+
+                override fun onReceivedError(webView: WebView?, request: WebResourceRequest?, error: WebResourceError?) {
+                    super.onReceivedError(webView, request, error)
+                    //確保Core Load好
+                    checkCoreIsLoaded(webView)
+                    if(webView?.url == coreURL){
+                        Toast.makeText(mainActivity, R.string.pleaseMakeSureTheDeviceIsConnectedToTheInternet, Toast.LENGTH_LONG).show()
+                    }
+                }
+            }
+            webView?.loadUrl(coreURL)
         } catch (e: Exception) {
             //Log.e("WebView", "Android System WebView is not found")
             createUpdateAlertByGooglePlayStore(
@@ -299,7 +365,6 @@ class MainActivity : AppCompatActivity() {
     fun switchFirefoxRun(){
         try {
             val webViewVersion = packageManager.getPackageInfo(firefoxPackageName, 0).versionName
-            Log.i("XXX", webViewVersion)
             if(68 <= webViewVersion.split(".").getOrNull(0)?.toIntOrNull()?:0){//68版本測試未發現有問題
                 //使用Firefox開啟HKNBP
                 val browserIntent = Intent(
@@ -311,7 +376,7 @@ class MainActivity : AppCompatActivity() {
             }else{
                 createUpdateAlertByGooglePlayStore(
                     getResources().getString(R.string.needUpdateYourFirefox),
-                    getResources().getString(R.string.thisApplicationUseFirefoxWithSupportES6),
+                    getResources().getString(R.string.thisApplicationUseFirefoxWithSupportES5),
                     true,
                     firefoxPackageName
                 )
@@ -336,14 +401,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         hideSystemUI()
-
         setSystemUIController()
         setCheckCoreLoaded()
-
         if (21 <= Build.VERSION.SDK_INT) {
             getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.background)) // Navigation bar the soft bottom of some phones like nexus and some Samsung note series
             getWindow().setStatusBarColor(ContextCompat.getColor(this,R.color.background)) //status bar or the time bar at the top
         }
+        saver = getSharedPreferences("HKNBP_Android", 0)
+
+        Log.i("Androidlifecycle", "onCreate")
     }
 
     override fun onResume() {
@@ -359,6 +425,8 @@ class MainActivity : AppCompatActivity() {
 
         webView?.onResume()
         webView?.resumeTimers()
+
+        Log.i("Androidlifecycle", "onResume")
     }
 
     override fun onPause() {
@@ -366,6 +434,8 @@ class MainActivity : AppCompatActivity() {
 
         webView?.onPause()
         webView?.pauseTimers()
+
+        Log.i("Androidlifecycle", "onPause")
     }
 
     override fun onStop() {
@@ -375,16 +445,19 @@ class MainActivity : AppCompatActivity() {
         //而呢個情況會令WebView嘅Video唔能夠播返(好似仲因為佢以為個App仍收埋緊而繼續停唔畀播)
         //所以當AndroidTV一收埋左就行onDestroy()
         if(isDirectToTV()){finish()}
+
+        Log.i("Androidlifecycle", "onStop")
     }
 
     override fun onDestroy() {
-        super.onDestroy()
         webView?.loadUrl("about:blank")
         webView?.stopLoading()
         webView?.setWebChromeClient(null)
         webView?.setWebViewClient(null)
         webView?.destroy()
         webView = null
+        super.onDestroy()
+        Log.i("Androidlifecycle", "onDestroy")
     }
 }
 

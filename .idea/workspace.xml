@@ -8,15 +8,190 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="XXX" />
-    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="zzz" />
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="No Filters" />
   </component>
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/app/src/main/java/org/sourcekey/hknbp/hknbp_android/MainActivity.kt" line="328" />
+    <bookmark url="file://$PROJECT_DIR$/app/src/main/java/org/sourcekey/hknbp/hknbp_android/MainActivity.kt" line="393" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cc51b01b-de5a-459f-8f20-ff5c68a636ed" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/values-zh/strings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/release/HKNBP.apk" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/01ffa75dd9d62be2_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/02ac134577e3e8cf_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/03abe3741ce30728_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/0482ab06634d5ace_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/04a848123103efc5_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/076d5ed70e75d5dc_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/0916c181d96a09f4_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/0a4bc7ba24b46b0a_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/0afa15b402cf80d0_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/0b348be7749f48f4_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/0d086b36e18841d6_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/0dabaa004125dc21_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/10295045f1bd0c7f_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/10728d6df9ede67c_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/1176faf50f7ab9b9_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/147ad5673de0c533_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/14e54b22b245f9d6_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/15771c48a8fdea36_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/16935829d1cc7263_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/1891c39adb9ea952_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/191dd01b2451b877_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/19f849d471b0840b_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/1f8d915cdc2182fe_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/2091fb3e59527de6_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/214f191d536c7fbb_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/218a9f33c5aa7c71_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/219f49070948e4b8_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/2221fd658417a179_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/259902f667d11375_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/27340246fb5a5daa_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/2808ea1eabb7ce9a_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/2940195bd9870d6e_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/2bf5ba1de037eb2d_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/2ce53c977b66fa70_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/2d8eeb543674ff35_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/2fdedc79d21d01ed_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/309e340b806687f6_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/31f347b4657da3ec_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/38588cefc2c82e17_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/386d94f11649c8af_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/39159aa50c83fdbe_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/3bfb3781a2ad50fc_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/3c95f0a25c51e45d_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/3dabdeb94434b8d1_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/3f1b0660da0695e3_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/3f211de911d9fa8d_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/3f282270b8f17a7b_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/3f500d4bfb97e8a0_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/42092bba72747d2c_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/446b514a03578d60_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/493a5e9b591ad313_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/4941f76720c9380b_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/4a023bc9c03efc44_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/4b0952e217510eae_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/4d636a4431c85b3d_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/5045f91a6e296d3e_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/52ff353843488ed5_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/53f4e59adc655f87_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/550f612c9010aeba_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/5517e4d62d63d861_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/55edfd4ad37c65a5_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/569d9b7e4937affe_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/573356a07cd43f3f_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/58fd288fa3163757_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/5aaee0b5c90be285_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/5e771e089defedc0_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/5f9901a4ccb8bb20_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/60317805a6bbcc26_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/6058c4048d5fb894_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/636a5d3e8f6bbd97_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/6430bbc162d3a7e5_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/65ddcc9d4c3d111a_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/672b5b055c41801d_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/6fce7be0bd8a20c5_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/6fd4aa4344086b61_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/713380f78d8c8a30_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/71b846cad0169d6f_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/727fce798e485c9d_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/73b0e0b1f94ca930_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/73c3fa990a0f5915_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/7542bb0f699815d9_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/75ad488fe9bc76ce_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/7840f40b64ec9c95_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/79629096cafc8cce_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/79b518dfce7569fe_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/7ae1795cd1117549_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/7b09c4aa449b6320_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/7cbf3b751808e694_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/80dfc047851eedee_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/80f6c3a5b9e79d91_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/8389c2d26456be73_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/8522e8234d4f2708_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/856bac3b6cbefcd7_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/85b3dcce32d751b7_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/85ead8880dccd898_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/869d2d07b18716fb_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/871f3773aa1770fa_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/87af42cedbfcb51c_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/8a43415d4464e041_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/8b32485320413306_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/8c5049595691cd9b_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/8e18a60e2826cdb2_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/90cb98cef9c9b068_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/9153246afa432c5a_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/924077df5dede761_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/93a98e8c1440f39b_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/984c54463771b0ba_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/9be26c3557805e36_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/9d1eafee93a0b616_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/9e8106dce299d94e_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/9f5fb7207114f735_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/a13ba5845e61bffb_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/a19494285cf896fa_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/a229f215187c7676_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/a2fdc2978cea7534_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/a32ccb3f3da14bf8_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/a8ca4138651809ba_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/ae4b729c918c9c64_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/af92c47f4c87ed6b_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/b0909eac06a82e0d_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/b35c8d7b941456a1_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/b668e99e5909d981_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/b810873fbee91baf_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/b8a3a47917caee03_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/bada9c34a833ef63_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/bc8a7a8f46f7c541_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/bdb0ae10056fb272_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/bfe4f7ce36b6ae72_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/c04c81592fe9391b_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/c1434d3e4ab8930b_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/c27ce6e5590ca29a_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/c3785b4da9479885_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/c3878a78027f727f_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/c3a67bea34271bde_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/c7d907f5cd4d7282_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/cb02c3b793fa30c7_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/cbe8cf95b589fc18_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/cbfe76684a9e0394_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/ccd3d4ae27af3985_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/cf41f3c15e611c20_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/cf9e3eebbfe6ac31_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/cfba60a070a7dedd_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/d0e39ef866ddee13_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/d2539f985c073ab3_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/d2f5d324547b520b_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/d5e790fd89681b0b_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/d785674c181190f0_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/da21f9b898ce6d56_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/de043b13f7f37196_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/de2947c1b1bea9e9_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/e49b73494151f26d_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/e66e9ebe74075a5e_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/e97b220b6f32799d_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/e9e6a9cb89c86483_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/ea553dac7b051dc2_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/ea79fdee2f5063f8_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/eaea5daf5e63396b_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/edcd70b819e93730_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/f1d68e85b6beabc1_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/f28c7fe6ca00cea4_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/f3329f06499ce4f8_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/f5d52c120b40a39b_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/f65b5882c2daa7d6_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/fb01bbc7d7991622_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/fbb697c9db41aa4c_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/fe7bb9b68ae99649_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/index" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cache/index-dir/the-real-index" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cookies" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Cookies-journal" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Local Storage/https_hknbp.org_0.localstorage" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Local Storage/https_www.youtube.com_0.localstorage" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Local Storage/https_www.youtube.com_0.localstorage-journal" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Web Data" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/app_webview/Web Data-journal" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" afterDir="false" />
@@ -29,48 +204,53 @@
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_annotation_annotation_1_1_0_alpha02_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_annotation_annotation_1_1_0_alpha02_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_arch_core_core_runtime_2_0_0_beta01_aar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_asynclayoutinflater_asynclayoutinflater_1_0_0_beta01_aar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_coordinatorlayout_coordinatorlayout_1_0_0_aar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_cursoradapter_cursoradapter_1_0_0_aar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_customview_customview_1_0_0_beta01_aar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_documentfile_documentfile_1_0_0_aar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_drawerlayout_drawerlayout_1_0_0_aar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_drawerlayout_drawerlayout_1_0_0_beta01_aar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_fragment_fragment_1_0_0_beta01_aar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_interpolator_interpolator_1_0_0_aar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_core_ui_1_0_0_aar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_core_utils_1_0_0_beta01_aar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_core_2_0_0_beta01_aar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_viewmodel_2_0_0_aar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_loader_loader_1_0_0_beta01_aar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_localbroadcastmanager_localbroadcastmanager_1_0_0_aar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_slidingpanelayout_slidingpanelayout_1_0_0_aar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_swiperefreshlayout_swiperefreshlayout_1_0_0_aar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_viewpager_viewpager_1_0_0_beta01_aar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_guava_listenablefuture_1_0_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_guava_listenablefuture_1_0_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_javawriter_2_1_1_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_javawriter_2_1_1_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__javax_inject_javax_inject_1_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__javax_inject_javax_inject_1_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__junit_junit_4_12_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__junit_junit_4_12_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__net_sf_kxml_kxml2_2_3_0_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__net_sf_kxml_kxml2_2_3_0_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_hamcrest_hamcrest_core_1_3_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_hamcrest_hamcrest_core_1_3_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_hamcrest_hamcrest_integration_1_3_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_hamcrest_hamcrest_integration_1_3_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_hamcrest_hamcrest_library_1_3_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_hamcrest_hamcrest_library_1_3_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_annotations_13_0_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_annotations_13_0_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_1_3_21_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_1_3_21_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_common_1_3_21_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_common_1_3_21_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_jdk7_1_3_21_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_jdk7_1_3_21_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_appcompat_appcompat_1_0_0_beta01_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_appcompat_appcompat_1_0_0_beta01_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_arch_core_core_runtime_2_0_0_beta01_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_arch_core_core_runtime_2_0_0_beta01_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_asynclayoutinflater_asynclayoutinflater_1_0_0_beta01_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_asynclayoutinflater_asynclayoutinflater_1_0_0_beta01_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_constraintlayout_constraintlayout_1_1_3_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_constraintlayout_constraintlayout_1_1_3_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_coordinatorlayout_coordinatorlayout_1_0_0_beta01_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_coordinatorlayout_coordinatorlayout_1_0_0_beta01_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_core_core_1_1_0_alpha05_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_core_core_1_1_0_alpha05_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_core_core_ktx_1_1_0_alpha05_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_core_core_ktx_1_1_0_alpha05_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_cursoradapter_cursoradapter_1_0_0_beta01_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_cursoradapter_cursoradapter_1_0_0_beta01_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_customview_customview_1_0_0_beta01_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_customview_customview_1_0_0_beta01_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_documentfile_documentfile_1_0_0_beta01_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_documentfile_documentfile_1_0_0_beta01_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_drawerlayout_drawerlayout_1_0_0_beta01_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_drawerlayout_drawerlayout_1_0_0_beta01_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_fragment_fragment_1_0_0_beta01_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_fragment_fragment_1_0_0_beta01_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_interpolator_interpolator_1_0_0_beta01_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_interpolator_interpolator_1_0_0_beta01_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_core_ui_1_0_0_beta01_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_core_ui_1_0_0_beta01_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_core_utils_1_0_0_beta01_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_core_utils_1_0_0_beta01_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_core_2_0_0_beta01_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_core_2_0_0_beta01_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_runtime_2_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_runtime_2_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_viewmodel_2_0_0_beta01_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_viewmodel_2_0_0_beta01_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_loader_loader_1_0_0_beta01_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_loader_loader_1_0_0_beta01_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_localbroadcastmanager_localbroadcastmanager_1_0_0_beta01_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_localbroadcastmanager_localbroadcastmanager_1_0_0_beta01_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_print_print_1_0_0_beta01_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_print_print_1_0_0_beta01_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_slidingpanelayout_slidingpanelayout_1_0_0_beta01_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_slidingpanelayout_slidingpanelayout_1_0_0_beta01_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_swiperefreshlayout_swiperefreshlayout_1_0_0_beta01_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_swiperefreshlayout_swiperefreshlayout_1_0_0_beta01_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_espresso_espresso_core_3_1_0_alpha4_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_espresso_espresso_core_3_1_0_alpha4_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_espresso_espresso_idling_resource_3_1_0_alpha4_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_espresso_espresso_idling_resource_3_1_0_alpha4_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_monitor_1_1_0_alpha4_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_monitor_1_1_0_alpha4_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_runner_1_1_0_alpha4_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_runner_1_1_0_alpha4_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_vectordrawable_vectordrawable_1_0_0_beta01_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_vectordrawable_vectordrawable_1_0_0_beta01_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_vectordrawable_vectordrawable_animated_1_0_0_beta01_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_vectordrawable_vectordrawable_animated_1_0_0_beta01_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_versionedparcelable_versionedparcelable_1_1_0_alpha02_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_versionedparcelable_versionedparcelable_1_1_0_alpha02_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_viewpager_viewpager_1_0_0_beta01_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_viewpager_viewpager_1_0_0_beta01_aar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/release/HKNBP.apk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/release/app-release.aab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/release/app-release.apk" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/release/output.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/release/output.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/org/sourcekey/hknbp/hknbp_android/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/org/sourcekey/hknbp/hknbp_android/MainActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/values-zh-rHK/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values-zh-rHK/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values-zh/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values-zh/strings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/lint-cache/maven.google/androidx/appcompat/group-index.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/intermediates/lint-cache/maven.google/androidx/appcompat/group-index.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/lint-cache/maven.google/androidx/constraintlayout/group-index.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/intermediates/lint-cache/maven.google/androidx/constraintlayout/group-index.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/lint-cache/maven.google/androidx/core/group-index.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/intermediates/lint-cache/maven.google/androidx/core/group-index.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/lint-cache/maven.google/master-index.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/intermediates/lint-cache/maven.google/master-index.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -81,7 +261,7 @@
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="R28M42NGA5W" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="Android_TV_720p_API_Q" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -96,40 +276,25 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/org/sourcekey/hknbp/hknbp_android/MainActivity.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="449">
-              <caret line="332" column="5" selection-start-line="332" selection-start-column="5" selection-end-line="332" selection-end-column="5" />
+            <state relative-caret-position="1974">
+              <caret line="266" column="17" selection-start-line="266" selection-start-column="12" selection-end-line="266" selection-end-column="17" />
               <folding>
-                <element signature="e#1908#1992#0" />
-                <element signature="e#2057#6765#0" />
-                <element signature="e#2127#2301#1" />
-                <element signature="e#2373#6711#1" />
-                <element signature="e#2387#6701#0" />
-                <element signature="e#6790#7180#0" />
-                <element signature="e#7205#8074#0" />
-                <element signature="e#8150#8316#0" />
-                <element signature="e#8193#8303#2" />
-                <element signature="e#8378#8425#0" />
-                <element signature="e#8466#8663#0" />
-                <element signature="e#8706#8903#0" />
-                <element signature="e#8946#9149#0" />
-                <element signature="e#9224#9382#0" />
-                <element signature="e#9267#9368#2" />
-                <element signature="e#9447#9498#0" />
-                <element signature="e#9655#10662#0" />
-                <element signature="e#10685#16345#0" />
-                <element signature="e#16373#17647#0" />
-                <element signature="e#17680#17860#0" />
-                <element signature="e#17917#18469#0" />
-                <element signature="e#18136#18463#1" />
-                <element signature="e#18499#18816#0" />
-                <element signature="e#18657#18703#1" />
-                <element signature="e#18707#18749#1" />
-                <element signature="e#18845#18935#0" />
-                <element signature="e#18963#19190#0" />
-                <element signature="e#19221#19457#0" />
+                <element signature="e#1825#1909#0" />
+                <element signature="e#1979#6940#0" />
+                <element signature="e#2049#2223#1" />
+                <element signature="e#2295#6881#1" />
+                <element signature="e#2309#6871#0" />
+                <element signature="e#6965#7355#0" />
+                <element signature="e#7380#8249#0" />
+                <element signature="e#8325#8491#0" />
+                <element signature="e#8368#8478#2" />
+                <element signature="e#8553#8600#0" />
+                <element signature="e#8641#8838#0" />
+                <element signature="e#8881#9078#0" />
+                <element signature="e#9121#9324#0" />
               </folding>
             </state>
           </provider>
@@ -138,31 +303,28 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="70">
-              <caret line="5" column="39" selection-start-line="5" selection-start-column="39" selection-end-line="5" selection-end-column="39" />
+            <state relative-caret-position="308">
+              <caret line="22" column="35" selection-start-line="22" selection-start-column="35" selection-end-line="22" selection-end-column="35" />
             </state>
           </provider>
           <provider editor-type-id="android-designer2" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/org/sourcekey/hknbp/hknbp_android/ProgressDialogSimplify.kt">
+        <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
-              <caret line="39" column="8" selection-start-line="39" selection-start-column="8" selection-end-line="39" selection-end-column="8" />
-              <folding>
-                <element signature="e#0#590#0" expanded="true" />
-                <element signature="e#635#696#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="224">
+              <caret line="16" column="66" selection-start-line="16" selection-start-column="66" selection-end-line="16" selection-end-column="66" />
             </state>
           </provider>
+          <provider editor-type-id="android-manifest" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="322">
-              <caret line="27" column="22" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
+            <state relative-caret-position="88">
+              <caret line="27" column="25" selection-start-line="27" selection-start-column="25" selection-end-line="27" selection-end-column="25" />
               <folding>
                 <element signature="e#0#590#0" expanded="true" />
               </folding>
@@ -184,15 +346,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>prtin</find>
-      <find>reloadCore</find>
-      <find>000</find>
-      <find>print</find>
-      <find>setCoreChecker</find>
-      <find>reload</find>
-      <find>vm</find>
-      <find>hknbp_android</find>
-      <find>[INFO:CONSOLE(1880)]</find>
       <find>setM</find>
       <find>I/chromium: [INFO:CONSOLE(</find>
       <find>yset</find>
@@ -214,6 +367,15 @@
       <find>Chrome</find>
       <find>chromePackageName</find>
       <find>switchFirefoxBrowserRun</find>
+      <find>&quot;onon&quot;</find>
+      <find>os</find>
+      <find>initWebView</find>
+      <find>ES6</find>
+      <find>setAppCachePath</find>
+      <find>e1</find>
+      <find>zzz</find>
+      <find>isFirstRun</find>
+      <find>Log.i</find>
     </findStrings>
   </component>
   <component name="GenerateSignedApkSettings">
@@ -234,22 +396,23 @@
         <option value="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/colors.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/org/sourcekey/hknbp/hknbp_android/MediaWebView.java" />
-        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/org/sourcekey/hknbp/hknbp_android/ProgressDialogSimplify.kt" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
         <option value="$PROJECT_DIR$/build.gradle" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values-zh-rHK/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/org/sourcekey/hknbp/hknbp_android/MainActivity.kt" />
         <option value="$PROJECT_DIR$/app/src/main/res/values-zh/strings.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values-zh-rHK/strings.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/org/sourcekey/hknbp/hknbp_android/MainActivity.kt" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="4">
-    <option name="x" value="1281" />
-    <option name="width" value="1279" />
-    <option name="height" value="1080" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="536" />
+    <option name="y" value="183" />
+    <option name="width" value="1269" />
+    <option name="height" value="1040" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -258,18 +421,10 @@
     </navigator>
     <panes>
       <pane id="ProjectPane" />
+      <pane id="Scope" />
       <pane id="AndroidView">
         <subPane>
           <expand>
-            <path>
-              <item name="HKNBP_Android" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-            </path>
-            <path>
-              <item name="HKNBP_Android" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
-            </path>
             <path>
               <item name="HKNBP_Android" type="1abcf292:AndroidViewProjectNode" />
               <item name="Gradle Scripts" type="ae0cef3a:AndroidBuildScriptsGroupNode" />
@@ -279,14 +434,14 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="Android_TV_720p_API_22" />
-    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2019-12-03T15:50:03.908Z" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="Android_TV_720p_API_Q" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-01-30T10:07:34.929Z" />
     <property name="ExportApk.ApkPath" value="$PROJECT_DIR$/app" />
     <property name="ExportApk.BuildVariants" value="release" />
+    <property name="ExportApk.SignV1" value="true" />
     <property name="ExportApk.SignV2" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android.sdk.path" value="$USER_HOME$/Android/Sdk" />
@@ -398,11 +553,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1281" y="0" width="1279" height="1080" extended-state="4" />
-    <editor active="true" />
+    <frame x="536" y="183" width="1269" height="1040" extended-state="0" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" sideWeight="0.49932885" visible="true" weight="0.1787165" />
+      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.49932885" visible="true" weight="0.11957412" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Build Variants" order="4" sideWeight="0.50067115" side_tool="true" weight="0.13495935" />
@@ -410,24 +564,24 @@
       <window_info id="Designer" order="6" />
       <window_info id="Capture Tool" order="7" />
       <window_info id="Resources Explorer" order="8" />
-      <window_info anchor="bottom" id="Run" order="0" weight="0.19429778" />
-      <window_info anchor="bottom" id="Logcat" order="1" weight="0.28811777" />
-      <window_info anchor="bottom" id="TODO" order="2" weight="0.32946146" />
+      <window_info anchor="bottom" id="Run" order="0" weight="0.1938326" />
+      <window_info anchor="bottom" id="Logcat" order="1" weight="0.032930844" />
+      <window_info anchor="bottom" id="TODO" order="2" weight="0.32855567" />
       <window_info anchor="bottom" id="Debug" order="3" />
-      <window_info anchor="bottom" id="Terminal" order="4" weight="0.28616685" />
+      <window_info anchor="bottom" id="Terminal" order="4" weight="0.2855568" />
       <window_info anchor="bottom" id="Event Log" order="5" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="6" weight="0.3297062" />
-      <window_info anchor="bottom" id="Build" order="7" visible="true" weight="0.17106652" />
+      <window_info anchor="bottom" id="Version Control" order="6" weight="0.32946146" />
+      <window_info anchor="bottom" id="Build" order="7" visible="true" weight="0.646086" />
       <window_info anchor="bottom" id="Android Profiler" order="8" show_stripe_button="false" weight="0.32946146" />
       <window_info anchor="bottom" id="Find" order="9" />
-      <window_info anchor="right" id="StringPreview" />
       <window_info anchor="right" id="Capture Analysis" order="0" />
       <window_info anchor="right" id="Gradle" order="1" />
       <window_info anchor="right" id="Theme Preview" order="2" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info anchor="right" id="Assistant" order="4" weight="0.31681558" />
-      <window_info anchor="right" id="Preview" order="5" weight="0.32981315" />
+      <window_info anchor="right" id="Preview" order="5" weight="0.3290008" />
       <window_info anchor="right" id="Device File Explorer" order="6" side_tool="true" weight="0.32981315" />
+      <window_info anchor="right" id="StringPreview" order="7" />
     </layout>
   </component>
   <component name="VcsManagerConfiguration">
@@ -474,14 +628,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider editor-type-id="android-manifest" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="37" column="47" selection-start-line="37" selection-start-column="47" selection-end-line="37" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="352">
@@ -499,41 +645,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="70">
-          <caret line="5" column="39" selection-start-line="5" selection-start-column="39" selection-end-line="5" selection-end-column="39" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="android-dummy:///home/localhost/文件/Projects/HKNBP/HKNBP_Android/app/Translations Editor">
       <provider selected="true" editor-type-id="string-resource-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values-zh/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="27" column="12" selection-start-line="27" selection-start-column="12" selection-end-line="27" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values-zh-rHK/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="15" selection-start-line="15" selection-end-line="27" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/org/sourcekey/hknbp/hknbp_android/ProgressDialogSimplify.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
+        <state relative-caret-position="546">
           <caret line="39" column="8" selection-start-line="39" selection-start-column="8" selection-end-line="39" selection-end-column="8" />
           <folding>
             <element signature="e#0#590#0" expanded="true" />
@@ -542,49 +659,77 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="27" column="22" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
-          <folding>
-            <element signature="e#0#590#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="280">
+          <caret line="20" column="67" selection-start-line="20" selection-start-column="67" selection-end-line="20" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values-zh/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="20" column="57" selection-start-line="20" selection-start-column="57" selection-end-line="20" selection-end-column="57" />
+          <caret line="20" column="70" selection-start-line="20" selection-start-column="70" selection-end-line="20" selection-end-column="70" />
+          <caret line="24" column="57" selection-start-line="24" selection-start-column="57" selection-end-line="24" selection-end-column="57" />
+          <caret line="24" column="70" selection-start-line="24" selection-start-column="70" selection-end-line="24" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values-zh-rHK/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="20" column="57" selection-start-line="20" selection-start-column="57" selection-end-line="20" selection-end-column="57" />
+          <caret line="20" column="70" selection-start-line="20" selection-start-column="70" selection-end-line="20" selection-end-column="70" />
+          <caret line="24" column="57" selection-start-line="24" selection-start-column="57" selection-end-line="24" selection-end-column="57" />
+          <caret line="24" column="70" selection-start-line="24" selection-start-column="70" selection-end-line="24" selection-end-column="70" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/org/sourcekey/hknbp/hknbp_android/MainActivity.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="449">
-          <caret line="332" column="5" selection-start-line="332" selection-start-column="5" selection-end-line="332" selection-end-column="5" />
+        <state relative-caret-position="1974">
+          <caret line="266" column="17" selection-start-line="266" selection-start-column="12" selection-end-line="266" selection-end-column="17" />
           <folding>
-            <element signature="e#1908#1992#0" />
-            <element signature="e#2057#6765#0" />
-            <element signature="e#2127#2301#1" />
-            <element signature="e#2373#6711#1" />
-            <element signature="e#2387#6701#0" />
-            <element signature="e#6790#7180#0" />
-            <element signature="e#7205#8074#0" />
-            <element signature="e#8150#8316#0" />
-            <element signature="e#8193#8303#2" />
-            <element signature="e#8378#8425#0" />
-            <element signature="e#8466#8663#0" />
-            <element signature="e#8706#8903#0" />
-            <element signature="e#8946#9149#0" />
-            <element signature="e#9224#9382#0" />
-            <element signature="e#9267#9368#2" />
-            <element signature="e#9447#9498#0" />
-            <element signature="e#9655#10662#0" />
-            <element signature="e#10685#16345#0" />
-            <element signature="e#16373#17647#0" />
-            <element signature="e#17680#17860#0" />
-            <element signature="e#17917#18469#0" />
-            <element signature="e#18136#18463#1" />
-            <element signature="e#18499#18816#0" />
-            <element signature="e#18657#18703#1" />
-            <element signature="e#18707#18749#1" />
-            <element signature="e#18845#18935#0" />
-            <element signature="e#18963#19190#0" />
-            <element signature="e#19221#19457#0" />
+            <element signature="e#1825#1909#0" />
+            <element signature="e#1979#6940#0" />
+            <element signature="e#2049#2223#1" />
+            <element signature="e#2295#6881#1" />
+            <element signature="e#2309#6871#0" />
+            <element signature="e#6965#7355#0" />
+            <element signature="e#7380#8249#0" />
+            <element signature="e#8325#8491#0" />
+            <element signature="e#8368#8478#2" />
+            <element signature="e#8553#8600#0" />
+            <element signature="e#8641#8838#0" />
+            <element signature="e#8881#9078#0" />
+            <element signature="e#9121#9324#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="22" column="35" selection-start-line="22" selection-start-column="35" selection-end-line="22" selection-end-column="35" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="16" column="66" selection-start-line="16" selection-start-column="66" selection-end-line="16" selection-end-column="66" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-manifest" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="27" column="25" selection-start-line="27" selection-start-column="25" selection-end-line="27" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#590#0" expanded="true" />
           </folding>
         </state>
       </provider>

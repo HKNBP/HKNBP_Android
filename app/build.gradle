@@ -24,8 +24,8 @@ android {
         applicationId "org.sourcekey.hknbp.hknbp_android"
         minSdkVersion 16
         targetSdkVersion 28
-        versionCode 8
-        versionName "8"
+        versionCode 12
+        versionName "12id"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -47,4 +47,3 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
 }
-

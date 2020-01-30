@@ -18,11 +18,11 @@
     <string name="loaded">已載入</string>
     <string name="pleaseMakeSureTheDeviceIsConnectedToTheInternet">請確保設備已連接到互聯網</string>
     <string name="needUpdateYourWebView">需要更新WebView</string>
-    <string name="thisApplicationUseWebViewWithSupportES6">此程式使用能支援ES6的WebView</string>
+    <string name="thisApplicationUseWebViewWithSupportES5">此程式使用能支援ES5的WebView</string>
     <string name="needInstallWebView">需要安裝WebView</string>
     <string name="pleaseInstallWebViewFromeGooglePlayStore">請在GooglePlayStore安裝WebView</string>
     <string name="needUpdateYourFirefox">需要更新Firefox</string>
-    <string name="thisApplicationUseFirefoxWithSupportES6">此程式使用能支援ES6的Firefox</string>
+    <string name="thisApplicationUseFirefoxWithSupportES5">此程式使用能支援ES5的Firefox</string>
     <string name="needInstallFirefox">需要安裝Firefox</string>
     <string name="pleaseInstallFirefoxFromeGooglePlayStore">請在GooglePlayStore安裝Firefox</string>
 </resources>

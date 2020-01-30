@@ -17,11 +17,11 @@
     <string name="loaded">Loaded</string>
     <string name="pleaseMakeSureTheDeviceIsConnectedToTheInternet">Please make sure the device is connected to the internet</string>
     <string name="needUpdateYourWebView">Need Update Your WebView</string>
-    <string name="thisApplicationUseWebViewWithSupportES6">This application use WebView with support ES6</string>
+    <string name="thisApplicationUseWebViewWithSupportES5">This application use WebView with support ES5</string>
     <string name="needInstallWebView">Need Install WebView</string>
     <string name="pleaseInstallWebViewFromeGooglePlayStore">Please Install WebView frome Google Play Store</string>
     <string name="needUpdateYourFirefox">Need Update Your Firefox</string>
-    <string name="thisApplicationUseFirefoxWithSupportES6">This application use Firefox with support ES6</string>
+    <string name="thisApplicationUseFirefoxWithSupportES5">This application use Firefox with support ES5</string>
     <string name="needInstallFirefox">Need Install Firefox</string>
     <string name="pleaseInstallFirefoxFromeGooglePlayStore">Please Install Firefox frome Google Play Store</string>
 </resources>
