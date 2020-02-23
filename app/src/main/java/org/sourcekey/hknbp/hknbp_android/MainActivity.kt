@@ -53,12 +53,6 @@ class MainActivity : AppCompatActivity() {
      * 唔使個個View去setOnKeyListener
      */
     override fun superDispatchKeyEvent(keyEvent: KeyEvent?): Boolean {
-        //由於有時未能跟HTML嘅autofocus去先Focus一個位置
-        webView?.loadUrl("""javascript:
-            if($(":focus").parents("#body").length){}else{
-                document.getElementById("userControlPanelShower").focus();
-            }
-        """)
         //實體搖控初始化
         if(keyEvent?.action == KeyEvent.ACTION_DOWN){
             when (keyEvent.keyCode) {
@@ -69,15 +63,15 @@ class MainActivity : AppCompatActivity() {
                 KeyEvent.KEYCODE_VOLUME_DOWN            -> {webView?.loadUrl("${remotePath}.volumeDownButton.click();")}
                 KeyEvent.KEYCODE_MEDIA_AUDIO_TRACK      -> {webView?.loadUrl("${remotePath}.nextAudioButton.click();")}
                 KeyEvent.KEYCODE_CAPTIONS               -> {webView?.loadUrl("${remotePath}.nextSubtitleButton.click();")}
-                KeyEvent.KEYCODE_DPAD_CENTER            -> {/*webView?.loadUrl("${remotePath}.centerButton.click();")*/}
-                KeyEvent.KEYCODE_DPAD_UP                -> {/*webView?.loadUrl("${remotePath}.upButton.click();")*/}
-                KeyEvent.KEYCODE_DPAD_UP_LEFT           -> {}
-                KeyEvent.KEYCODE_DPAD_UP_RIGHT          -> {}
-                KeyEvent.KEYCODE_DPAD_DOWN              -> {/*webView?.loadUrl("${remotePath}.downButton.click();")*/}
-                KeyEvent.KEYCODE_DPAD_DOWN_LEFT         -> {}
-                KeyEvent.KEYCODE_DPAD_DOWN_RIGHT        -> {}
-                KeyEvent.KEYCODE_DPAD_LEFT              -> {/*webView?.loadUrl("${remotePath}.leftButton.click();")*/}
-                KeyEvent.KEYCODE_DPAD_RIGHT             -> {/*webView?.loadUrl("${remotePath}.rightButton.click();")*/}
+                KeyEvent.KEYCODE_DPAD_CENTER            -> {webView?.loadUrl("${remotePath}.centerButton.click();")}
+                KeyEvent.KEYCODE_DPAD_UP                -> {webView?.loadUrl("${remotePath}.upButton.click();")}
+                KeyEvent.KEYCODE_DPAD_UP_LEFT           -> {webView?.loadUrl("${remotePath}.upButton.click();")}//////暫時性
+                KeyEvent.KEYCODE_DPAD_UP_RIGHT          -> {webView?.loadUrl("${remotePath}.upButton.click();")}//////暫時性
+                KeyEvent.KEYCODE_DPAD_DOWN              -> {webView?.loadUrl("${remotePath}.downButton.click();")}
+                KeyEvent.KEYCODE_DPAD_DOWN_LEFT         -> {webView?.loadUrl("${remotePath}.downButton.click();")}//////暫時性
+                KeyEvent.KEYCODE_DPAD_DOWN_RIGHT        -> {webView?.loadUrl("${remotePath}.downButton.click();")}//////暫時性
+                KeyEvent.KEYCODE_DPAD_LEFT              -> {webView?.loadUrl("${remotePath}.leftButton.click();")}
+                KeyEvent.KEYCODE_DPAD_RIGHT             -> {webView?.loadUrl("${remotePath}.rightButton.click();")}
                 KeyEvent.KEYCODE_TV_TIMER_PROGRAMMING   -> {webView?.loadUrl("${remotePath}.epgButton.click();")}
                 KeyEvent.KEYCODE_GUIDE                  -> {webView?.loadUrl("${remotePath}.epgButton.click();")}
                 KeyEvent.KEYCODE_0                      -> {webView?.loadUrl("${remotePath}.number0Button.click();")}
@@ -90,6 +84,7 @@ class MainActivity : AppCompatActivity() {
                 KeyEvent.KEYCODE_7                      -> {webView?.loadUrl("${remotePath}.number7Button.click();")}
                 KeyEvent.KEYCODE_8                      -> {webView?.loadUrl("${remotePath}.number8Button.click();")}
                 KeyEvent.KEYCODE_9                      -> {webView?.loadUrl("${remotePath}.number9Button.click();")}
+                KeyEvent.KEYCODE_MINUS                  -> {webView?.loadUrl("${remotePath}.minusButton.click();")}
                 KeyEvent.KEYCODE_TV_MEDIA_CONTEXT_MENU  -> {webView?.loadUrl("${remotePath}.menuButton.click();")}
                 KeyEvent.KEYCODE_TV_CONTENTS_MENU       -> {webView?.loadUrl("${remotePath}.menuButton.click();")}
                 KeyEvent.KEYCODE_INFO                   -> {webView?.loadUrl("${remotePath}.tvChannelDescriptionButton.click();")}
@@ -101,10 +96,13 @@ class MainActivity : AppCompatActivity() {
                 KeyEvent.KEYCODE_LAST_CHANNEL           -> {webView?.loadUrl("${remotePath}.lastTimeChannelButton.click();")}
                 KeyEvent.KEYCODE_WINDOW                 -> {/**畫中畫功能*/}
                 KeyEvent.KEYCODE_BACK                   -> {}
-                else                                    -> {webView?.loadUrl("${coreKotlinJSPath}.PromptBox.promptMessage(\"本程式並無此功能提供${keyEvent.keyCode}\");")}
+                else                                    -> {
+                    webView?.loadUrl("${coreKotlinJSPath}.PromptBox.promptMessage(\"本程式並無此功能提供${keyEvent.keyCode}\");")
+                    return super.superDispatchKeyEvent(keyEvent)
+                }
             }
         }
-        return super.superDispatchKeyEvent(keyEvent)
+        return true
     }
 
     fun showSystemUI() {
