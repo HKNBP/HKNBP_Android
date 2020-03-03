@@ -25,6 +25,7 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.KeyEvent
+import android.view.MotionEvent
 import android.view.View
 import android.webkit.*
 import android.widget.Toast
@@ -103,6 +104,16 @@ class MainActivity : AppCompatActivity() {
             }
         }
         return true
+    }
+
+    /**
+     * (未完成)
+     * 試下響度set DPAD
+     * 睇下google畀唔畀發androidTV
+     * */
+    override fun onGenericMotionEvent(event: MotionEvent?): Boolean {
+
+        return super.onGenericMotionEvent(event)
     }
 
     fun showSystemUI() {
