@@ -332,9 +332,9 @@ class MainActivity : AppCompatActivity() {
                     webView?.loadUrl("${coreKotlinJSPath}.UserControlPanel.onShowUserControlPanel=function(){HKNBP_Android.requestSystemUI(true);};")
                     webView?.loadUrl("${coreKotlinJSPath}.UserControlPanel.onHideUserControlPanel=function(){HKNBP_Android.requestSystemUI(false);};")
                     //虛擬搖控鍵設換
-                    webView?.loadUrl("${coreKotlinJSPath}.Player.Companion.volumeUp=function(){HKNBP_Android.volumeUp();};")
-                    webView?.loadUrl("${coreKotlinJSPath}.Player.Companion.volumeDown=function(){HKNBP_Android.volumeDown();};")
-                    webView?.loadUrl("${coreKotlinJSPath}.Player.Companion.volumeMute=function(){HKNBP_Android.volumeMute();};")
+                    webView?.loadUrl("${coreKotlinJSPath}.Player.volumeUp=function(){HKNBP_Android.volumeUp();};")
+                    webView?.loadUrl("${coreKotlinJSPath}.Player.volumeDown=function(){HKNBP_Android.volumeDown();};")
+                    webView?.loadUrl("${coreKotlinJSPath}.Player.volumeMute=function(){HKNBP_Android.volumeMute();};")
                     //話畀Core知個App係咩版本
                     webView?.loadUrl("javascript:window.setTimeout(function(){${corePath}.appVersion=\"${appVersion}\";},0)")
                     /*//顯一顯示VirtualRemote,因Google好似唔知本程式已有DPAD功能而不斷唔畀將程式發報到AndroidTV度
