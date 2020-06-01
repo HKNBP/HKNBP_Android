@@ -37,6 +37,8 @@
     <uses-feature android:name="android.hardware.sensor"
             android:required="false"/>
 
+    <uses-configuration android:reqFiveWayNav="true"/>
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <dist:module dist:instant="true"/>

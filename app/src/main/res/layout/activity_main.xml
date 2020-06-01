@@ -22,10 +22,10 @@
         tools:context=".MainActivity"
         android:background="#000000">
 
-    <WebView
-            android:id="@+id/webView"
+    <org.sourcekey.hknbp.hknbp_android.HknbpCoreView
+            android:id="@+id/hknbpCoreView"
             android:layout_width="match_parent"
             android:layout_height="match_parent" >
-    </WebView>
+    </org.sourcekey.hknbp.hknbp_android.HknbpCoreView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
