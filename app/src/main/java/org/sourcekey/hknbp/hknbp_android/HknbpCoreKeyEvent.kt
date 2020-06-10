@@ -20,6 +20,7 @@ import android.view.MotionEvent
 import android.webkit.JavascriptInterface
 import android.webkit.WebView
 
+
 class HknbpCoreKeyEvent(val webView: WebView): HknbpCoreLifecycle {
 
     private val javascriptInterfaceName = "HknbpAndroidKeyEvent"
@@ -49,14 +50,16 @@ class HknbpCoreKeyEvent(val webView: WebView): HknbpCoreLifecycle {
 
     override fun dispatchKeyEvent(keyEvent: KeyEvent?, superFun: ()->Boolean): Boolean {
         //實體搖控初始化
-        if(keyEvent?.action == KeyEvent.ACTION_DOWN){
+        if(keyEvent?.action == KeyEvent.ACTION_UP){
             //設置SuperFun畀JS去Call(使未定義Key行返默認程序)
             dispatchKeyEventSuperFun = superFun
             //執行KeyCode
-            webView.loadUrl("javascript:onAndroidKey(${keyEvent.keyCode});")
-            return true
+            when(keyEvent.keyCode){
+                KeyEvent.KEYCODE_BACK ->{ webView.goBack() }
+                else ->{webView.loadUrl("javascript:onAndroidKey(${keyEvent.keyCode});")}
+            }
         }
-        return superFun()
+        return true
     }
 
     /**
@@ -67,12 +70,14 @@ class HknbpCoreKeyEvent(val webView: WebView): HknbpCoreLifecycle {
     }
 
     override fun onPageFinished(webView: WebView, url: String){
+        //暫時取消HKNBP休眠功能 (因未諗到辦法在AndroidTV使HKNBP休眠後喚醒)
+        webView.loadUrl("javascript:hknbpRemote.sleepButton.onclick = function(){};")
         //將KeyEvent放置到Web內執行
         //因使用AndroidCode嘅dispatchKeyEvent()個Enter鍵會一撳就點擊兩次(以下方法已解決)
         //同埋要試下咁樣可唔可以通過到PlayStore嘅Dpad功能認證(之前試過多種方法都未能成功上架)
         webView.loadUrl("""javascript:
             function onAndroidKey(keyCode){
-                switch(keyCode) {
+                switch(keyCode){
                     case ${KeyEvent.KEYCODE_DPAD_CENTER}:           hknbpRemote.centerButton.click(); break;
                     case ${KeyEvent.KEYCODE_DPAD_UP}:               hknbpRemote.upButton.click(); break;
                     case ${KeyEvent.KEYCODE_DPAD_DOWN}:             hknbpRemote.downButton.click(); break;
@@ -120,6 +125,7 @@ class HknbpCoreKeyEvent(val webView: WebView): HknbpCoreLifecycle {
     }
 
     init {
-        webView.addJavascriptInterface(this, javascriptInterfaceName)//加個[值]到JS被JS去AndroidCode
+        //加個[值]到JS被JS去AndroidCode
+        webView.addJavascriptInterface(this, javascriptInterfaceName)
     }
 }

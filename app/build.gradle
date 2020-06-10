@@ -24,8 +24,8 @@ android {
         applicationId "org.sourcekey.hknbp.hknbp_android"
         minSdkVersion 15
         targetSdkVersion 29
-        versionCode 23
-        versionName "23"
+        versionCode 24
+        versionName "24"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
